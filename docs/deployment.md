@@ -88,4 +88,3 @@ If a visitor’s network blocks those hosts, fonts may fallback and Music previe
 - [Installation](./installation.md)
 - [Configuration](./configuration.md)
 - [Performance](./performance.md)
-- [Security](./security.md)

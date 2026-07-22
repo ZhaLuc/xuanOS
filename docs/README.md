@@ -55,7 +55,6 @@ This documentation suite is written for:
 
 | Document | Description |
 | --- | --- |
-| [security.md](./security.md) | Threat model for a static client site |
 | [performance.md](./performance.md) | Bundle size, assets, canvas, audio |
 
 ### Modules

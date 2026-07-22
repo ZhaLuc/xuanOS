@@ -1015,7 +1015,7 @@ body {
 }
 
 .app-music__pane {
-  padding: 20px 22px;
+  padding: 18px 18px 20px;
   overflow: auto;
   min-height: 0;
   font-family: "Gochi Hand", cursive;
@@ -1029,14 +1029,152 @@ body {
 
 .app-music__heading {
   margin: 0 0 14px;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
   line-height: 1;
 }
 
-.app-music__empty {
+.app-music__songs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.app-music__songs-head .app-music__heading {
   margin: 0;
-  font-size: 22px;
-  line-height: 1.2;
-  color: #666;
+}
+
+.app-music__volume {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.app-music__volume-label {
+  font-size: 18px;
+  line-height: 1;
+  color: #111;
+}
+
+.app-music__volume-slider {
+  width: 84px;
+  height: 6px;
+  appearance: none;
+  background: #ddd;
+  border: 2px solid #111;
+  cursor: pointer;
+}
+
+.app-music__volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #111;
+  border: 2px solid #111;
+  cursor: pointer;
+}
+
+.app-music__volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #111;
+  border: 2px solid #111;
+  cursor: pointer;
+}
+
+.app-music__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.app-music__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.app-music__cover {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.app-music__art {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border: 2px solid #111;
+  display: block;
+  background: #fff;
+}
+
+.app-music__play {
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  border: 2px solid #111;
+  background: rgba(17, 17, 17, 0.55);
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  place-items: center;
+  padding: 0;
+}
+
+.app-music__cover:hover .app-music__play,
+.app-music__play:focus-visible,
+.app-music__play.is-playing {
+  display: grid;
+}
+
+.app-music__play-icon {
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid #fff;
+  margin-left: 3px;
+}
+
+.app-music__play.is-playing .app-music__play-icon {
+  width: 10px;
+  height: 12px;
+  margin-left: 0;
+  border: 0;
+  background:
+    linear-gradient(#fff, #fff) left / 3px 100% no-repeat,
+    linear-gradient(#fff, #fff) right / 3px 100% no-repeat;
+}
+
+.app-music__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.app-music__name {
+  font-size: 20px;
+  line-height: 1.15;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-music__sub {
+  font-size: 16px;
+  line-height: 1.1;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

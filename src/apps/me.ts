@@ -29,7 +29,7 @@ function createMeContent(): HTMLElement {
       <div class="app-me__actions">
         <a
           class="app-me__btn"
-          href="https://github.com/LucasZhang3"
+          href="https://github.com/ZhaLuc"
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -41,7 +41,7 @@ export function createDesktop(options: DesktopOptions): DesktopController {
             <div class="menubar__time" data-menubar-time></div>
             <a
               class="menubar__github"
-              href="https://github.com/LucasZhang3/pf"
+              href="https://github.com/ZhaLuc/xuanOS"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open this project on GitHub"

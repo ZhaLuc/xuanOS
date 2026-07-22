@@ -158,6 +158,7 @@ export function createDesktop(options: DesktopOptions): DesktopController {
     root.classList.add("is-shutting-off");
 
     window.setTimeout(() => {
+      wm.closeAll();
       hide();
       root.classList.remove("is-shutting-off");
       shuttingDown = false;

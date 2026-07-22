@@ -3,6 +3,8 @@ import type { AppId } from "../apps/types";
 
 export type ScaleProvider = () => { x: number; y: number };
 
+type DestroyableContent = HTMLElement & { destroy?: () => void };
+
 type WindowRecord = {
   id: AppId;
   el: HTMLElement;
@@ -12,6 +14,7 @@ type WindowRecord = {
 export type WindowManager = {
   open: (id: AppId) => void;
   close: (id: AppId) => void;
+  closeAll: () => void;
   minimize: (id: AppId) => void;
   restore: (id: AppId) => void;
   focus: (id: AppId) => void;
@@ -37,8 +40,18 @@ export function createWindowManager(
   function close(id: AppId) {
     const record = windows.get(id);
     if (!record) return;
+
+    const content = record.el.querySelector<DestroyableContent>("[data-body] > *");
+    content?.destroy?.();
+
     record.el.remove();
     windows.delete(id);
+  }
+
+  function closeAll() {
+    for (const id of [...windows.keys()]) {
+      close(id);
+    }
   }
 
   function minimize(id: AppId) {
@@ -108,7 +121,7 @@ export function createWindowManager(
     focus(id);
   }
 
-  return { open, close, minimize, restore, focus };
+  return { open, close, closeAll, minimize, restore, focus };
 }
 
 function enableDrag(

@@ -75,13 +75,26 @@ Serves the contents of `dist/` locally for smoke-testing the production bundle.
 
 The build output is a static site (`dist/`). Deploy that folder to any static host (GitHub Pages, Netlify, Cloudflare Pages, S3+CDN, etc.).
 
-**Requirements for hosting:**
+### Vercel (this project)
+
+The repo includes [`vercel.json`](../vercel.json):
+
+| Field | Value |
+| --- | --- |
+| `framework` | `vite` |
+| `buildCommand` | `npm run build` |
+| `outputDirectory` | `dist` |
+| `rewrites` | `/(.*)` → `/index.html` |
+
+Production deployment for this repository: **[https://lexuan.vercel.app](https://lexuan.vercel.app)** (Vercel project `lexuan`, Git integration with `main`).
+
+### Hosting requirements
 
 - Serve `index.html` for the site root.
-- Serve `/public` assets at URL paths matching `/favicon.png`, `/loader.png`, etc. (Vite copies `public/` to `dist/` root).
+- Serve assets at URL paths matching `/favicon.png`, `/loader.png`, etc. (Vite copies `public/` to `dist/` root).
 - Allow outbound requests to Google Fonts and (for Music) Apple iTunes preview CDN.
 
-This repository does not currently include a checked-in CI deploy workflow.
+There is no separate GitHub Actions deploy workflow in the repository; Vercel builds from the connected GitHub remote.
 
 ---
 

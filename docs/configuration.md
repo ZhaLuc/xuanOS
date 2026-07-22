@@ -73,6 +73,24 @@ Add a config file only when you need aliases, custom base path, or plugin pipeli
 
 ---
 
+## vercel.json
+
+Checked-in deploy config for Vercel:
+
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+No environment variables are required for the static site.
+
+---
+
 ## Soft Configuration in Code
 
 These are constants, not env vars:

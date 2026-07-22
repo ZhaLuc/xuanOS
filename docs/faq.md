@@ -16,7 +16,7 @@ No. It is a Vite + TypeScript static website that *looks* like an OS. There is n
 
 ### Where is it live?
 
-[https://lexuan.vercel.app](https://lexuan.vercel.app), deployed from [github.com/LucasZhang3/pf](https://github.com/LucasZhang3/pf).
+[https://lexuan.vercel.app](https://lexuan.vercel.app), deployed from [github.com/ZhaLuc/xuanOS](https://github.com/ZhaLuc/xuanOS).
 
 ### Why does it look stretched on my monitor?
 

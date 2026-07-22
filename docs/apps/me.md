@@ -27,7 +27,7 @@ flowchart LR
 | --- | --- |
 | Portrait | `/me-portrait.png`, markup width/height 180×240, `alt="me"` |
 | Quote | `i code stuff i like` |
-| GitHub | `https://github.com/LucasZhang3`, `target="_blank"`, `rel="noopener noreferrer"` |
+| GitHub | `https://github.com/ZhaLuc`, `target="_blank"`, `rel="noopener noreferrer"` |
 | Email | `mailto:lucaszhangbusiness@gmail.com` |
 | Icons | Inline SVG (GitHub mark + envelope) |
 

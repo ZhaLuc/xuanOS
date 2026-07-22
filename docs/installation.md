@@ -6,7 +6,7 @@
 | --- | --- |
 | Node.js | Modern LTS recommended (Vite 8 / TypeScript 6 tooling) |
 | npm | Ships with Node; lockfile is `package-lock.json` |
-| Git | To clone [LucasZhang3/pf](https://github.com/LucasZhang3/pf) |
+| Git | To clone [ZhaLuc/xuanOS](https://github.com/ZhaLuc/xuanOS) |
 
 No Docker, Python, or system native deps are required for the app itself.
 
@@ -15,7 +15,7 @@ No Docker, Python, or system native deps are required for the app itself.
 ## Clone
 
 ```bash
-git clone https://github.com/LucasZhang3/pf.git
+git clone https://github.com/ZhaLuc/xuanOS.git
 cd pf
 ```
 

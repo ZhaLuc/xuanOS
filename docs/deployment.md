@@ -3,7 +3,7 @@
 ## Production URL
 
 Live site: [https://lexuan.vercel.app](https://lexuan.vercel.app)  
-Source: [https://github.com/LucasZhang3/pf](https://github.com/LucasZhang3/pf)
+Source: [https://github.com/ZhaLuc/xuanOS](https://github.com/ZhaLuc/xuanOS)
 
 ---
 

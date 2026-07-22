@@ -4,7 +4,7 @@
 
 **A hand-drawn desktop OS portfolio in the browser.**
 
-[Live site](https://lexuan.vercel.app) · [Documentation](./docs/README.md) · [GitHub](https://github.com/LucasZhang3/pf)
+[Live site](https://lexuan.vercel.app) · [Documentation](./docs/README.md) · [GitHub](https://github.com/ZhaLuc/xuanOS)
 
 <br />
 
@@ -123,7 +123,7 @@ Full diagrams: [docs/architecture.md](./docs/architecture.md)
 ## Quick Start
 
 ```bash
-git clone https://github.com/LucasZhang3/pf.git
+git clone https://github.com/ZhaLuc/xuanOS.git
 cd pf
 npm install
 npm run dev

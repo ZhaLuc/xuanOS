@@ -52,7 +52,7 @@ section.viewport.desktop#desktop
 | Area | Behavior |
 | --- | --- |
 | Brand / time / signature | Pixel labels redrawn in `paintChrome` |
-| GitHub link | Opens `https://github.com/LucasZhang3/pf` |
+| GitHub link | Opens `https://github.com/ZhaLuc/xuanOS` |
 | Icons | Built from `listApps()`; wired via `enableIconDesktop` |
 | Windows | `createWindowManager(windowsLayer, getScale)` |
 | Power | Toggle menu; **shut off** runs shutdown sequence |

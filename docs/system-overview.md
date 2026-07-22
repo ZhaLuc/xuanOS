@@ -4,7 +4,7 @@
 
 **XUANOS** is a personal portfolio presented as a fictional desktop operating system. Visitors do not browse a conventional multi-page website. They "log in," land on a hand-drawn desktop, open apps in windows, and can shut the machine off to return to the login screen.
 
-The project lives at [https://github.com/LucasZhang3/pf](https://github.com/LucasZhang3/pf). The npm package name is `xuanos` (`package.json`), version `0.1.0`, marked `private`.
+The project lives at [https://github.com/ZhaLuc/xuanOS](https://github.com/ZhaLuc/xuanOS). The npm package name is `xuanos` (`package.json`), version `0.1.0`, marked `private`.
 
 ---
 

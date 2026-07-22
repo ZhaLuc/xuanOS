@@ -19,7 +19,7 @@ flowchart TB
 | Region | Contents |
 | --- | --- |
 | Top left | Pixel label **XUANOS** |
-| Top right | Live time (pixel) + GitHub link to `LucasZhang3/pf` |
+| Top right | Live time (pixel) + GitHub link to `ZhaLuc/xuanOS` |
 | Workarea | Icon column + window layer |
 | Bottom left | Power button → **shut off** |
 | Bottom right | Signature **乐轩2026** (ZCOOL KuaiLe) |

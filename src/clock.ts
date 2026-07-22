@@ -33,7 +33,6 @@ function pad(value: number): string {
   return value.toString().padStart(2, "0");
 }
 
-/** Sloppy, lowercase clock copy that matches the hand-drawn login art. */
 export function formatClock(now: Date): ClockParts {
   const hours24 = now.getHours();
   const hours12 = hours24 % 12 || 12;

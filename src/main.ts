@@ -1,5 +1,7 @@
 import "./style.css";
 import { formatClock, startClock } from "./clock";
+import { createPixelClock } from "./pixelClock";
+import { createDesktop } from "./desktop";
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 1080;
@@ -10,8 +12,8 @@ if (!app) {
 }
 
 app.innerHTML = `
-  <main class="viewport" id="login" role="button" tabindex="0" aria-label="Click to enter XUANOS">
-    <div class="stage-scaler" id="scaler">
+  <main class="viewport login" id="login" role="button" tabindex="0" aria-label="Click to enter XUANOS">
+    <div class="stage-scaler" id="login-scaler">
       <div class="stage">
         <img
           class="stage__art"
@@ -22,39 +24,44 @@ app.innerHTML = `
           height="1080"
         />
         <div class="stage__clock" aria-live="polite">
-          <div class="stage__clock-weekday" data-clock="weekday"></div>
-          <div class="stage__clock-date" data-clock="date"></div>
-          <div class="stage__clock-time" data-clock="time"></div>
+          <span class="stage__clock-sr" data-clock-label></span>
         </div>
       </div>
     </div>
   </main>
-  <div class="boot-placeholder" id="boot" aria-hidden="true">desktop coming soon...</div>
 `;
 
 const login = document.querySelector<HTMLElement>("#login")!;
-const scaler = document.querySelector<HTMLElement>("#scaler")!;
-const boot = document.querySelector<HTMLElement>("#boot")!;
-const weekdayEl = document.querySelector<HTMLElement>('[data-clock="weekday"]')!;
-const dateEl = document.querySelector<HTMLElement>('[data-clock="date"]')!;
-const timeEl = document.querySelector<HTMLElement>('[data-clock="time"]')!;
+const loginScaler = document.querySelector<HTMLElement>("#login-scaler")!;
+const clockMount = document.querySelector<HTMLElement>(".stage__clock")!;
+const clockLabel = document.querySelector<HTMLElement>("[data-clock-label]")!;
 
-function renderClock(now: Date) {
+const pixelClock = createPixelClock();
+clockMount.append(pixelClock.canvas);
+
+const desktop = createDesktop();
+app.append(desktop.root);
+
+function renderLoginClock(now: Date) {
   const parts = formatClock(now);
-  weekdayEl.textContent = parts.weekday;
-  dateEl.textContent = parts.date;
-  timeEl.textContent = parts.time;
+  clockLabel.textContent = `${parts.weekday}, ${parts.date}, ${parts.time}`;
+  pixelClock.draw(parts);
 }
 
-function fitStage() {
-  const scale = Math.min(
-    window.innerWidth / DESIGN_WIDTH,
-    window.innerHeight / DESIGN_HEIGHT,
-  );
-  scaler.style.transform = `scale(${scale})`;
+function fitLogin() {
+  const scaleX = window.innerWidth / DESIGN_WIDTH;
+  const scaleY = window.innerHeight / DESIGN_HEIGHT;
+  loginScaler.style.transform = `scale(${scaleX}, ${scaleY})`;
+  renderLoginClock(new Date());
+}
+
+function fitAll() {
+  fitLogin();
+  desktop.fit();
 }
 
 let entered = false;
+const YEET_MS = 1350;
 
 function enter() {
   if (entered) return;
@@ -64,17 +71,28 @@ function enter() {
   login.setAttribute("aria-disabled", "true");
 
   window.setTimeout(() => {
-    login.hidden = true;
-    boot.classList.add("is-visible");
-    boot.setAttribute("aria-hidden", "false");
-  }, 550);
+    desktop.show();
+    login.classList.add("is-away");
+    login.setAttribute("aria-hidden", "true");
+  }, YEET_MS);
 }
 
-renderClock(new Date());
-const stopClock = startClock(renderClock);
+async function boot() {
+  if (document.fonts?.ready) {
+    await document.fonts.ready;
+  }
+  fitAll();
+}
 
-fitStage();
-window.addEventListener("resize", fitStage);
+boot();
+const stopClock = startClock((now) => {
+  if (!login.classList.contains("is-away")) {
+    renderLoginClock(now);
+  }
+  desktop.tick(now);
+});
+
+window.addEventListener("resize", fitAll);
 
 login.addEventListener("click", enter);
 login.addEventListener("keydown", (event) => {

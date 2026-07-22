@@ -4,18 +4,30 @@
   box-sizing: border-box;
 }
 
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
 html,
 body {
   margin: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #0a0a0a;
+  background: #fff;
 }
 
 body {
   font-family: "Gochi Hand", cursive;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: none;
 }
 
 #app {
@@ -24,13 +36,36 @@ body {
 }
 
 .viewport {
+  position: fixed;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   user-select: none;
+  background: #fff;
+}
+
+
+.viewport.is-away,
+.viewport[hidden] {
+  display: none !important;
+}
+
+.login {
+  cursor: pointer;
+  z-index: 2;
+}
+
+.desktop {
+  cursor: default;
+  z-index: 1;
+  display: none;
+}
+
+.desktop.is-active {
+  display: flex;
 }
 
 .stage-scaler {
@@ -47,70 +82,632 @@ body {
   background: #fff;
 }
 
+.login .stage {
+  
+  transform-origin: 50% 57%;
+}
+
 .stage__art {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: fill;
   pointer-events: none;
+  image-rendering: pixelated;
 }
 
-/* Empty box region measured from the 959×540 drawing */
+
 .stage__clock {
   position: absolute;
   left: 36.5%;
   top: 28.5%;
   width: 27%;
   height: 57%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.1em;
-  color: #111;
-  text-align: center;
-  line-height: 1.05;
   pointer-events: none;
 }
 
-.stage__clock-weekday {
-  font-size: 64px;
-  letter-spacing: 0.02em;
+.stage__clock-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.stage__clock-date {
-  font-size: 72px;
-  letter-spacing: 0.01em;
+.stage__clock-canvas,
+.pixel-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
 }
 
-.stage__clock-time {
-  margin-top: 0.35em;
-  font-size: 96px;
-  letter-spacing: 0.04em;
+.pixel-label--hires {
+  image-rendering: auto;
 }
 
-.viewport.is-entering .stage {
-  animation: login-exit 0.55s ease-in forwards;
+.login.is-entering {
+  cursor: default;
+  pointer-events: none;
 }
 
-@keyframes login-exit {
-  to {
-    opacity: 0;
+.login.is-entering .stage {
+  animation: stupid-yeet 1.35s cubic-bezier(0.4, 0.02, 0.85, 0.4) forwards;
+}
+
+.login.is-entering .stage__clock {
+  animation: clock-panic 0.45s ease-in forwards;
+}
+
+
+@keyframes stupid-yeet {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  35% {
+    transform: rotate(-48deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(980deg) scale(22);
   }
 }
 
-.boot-placeholder {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background: #0a0a0a;
-  color: #f2f2f2;
-  font-size: 42px;
-  letter-spacing: 0.04em;
+@keyframes clock-panic {
+  to {
+    opacity: 0;
+    transform: rotate(-25deg) scale(0.4);
+  }
 }
 
-.boot-placeholder.is-visible {
+
+
+.menubar--top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 28px 0 24px;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.menubar__brand {
+  width: 280px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.menubar__status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 26px;
+}
+
+.menubar__time {
+  width: 220px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.desktop__workarea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 56px;
+  bottom: 56px;
+  z-index: 1;
+}
+
+.desktop__icons {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 2;
+}
+
+.desktop__windows {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.menubar--bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 56px;
+  z-index: 2;
+}
+
+
+.desktop-icon {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 6px 8px;
+  width: 104px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #111;
+  font-family: "Gochi Hand", cursive;
+  font-size: 22px;
+  line-height: 1;
+  -webkit-font-smoothing: none;
+}
+
+.desktop-icon:hover,
+.desktop-icon:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
+
+.desktop-icon__img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.desktop-icon__label {
+  text-align: center;
+  pointer-events: none;
+}
+
+
+.os-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 2px solid #111;
+  box-shadow: 3px 3px 0 #111;
+  pointer-events: auto;
+  overflow: hidden;
+  transform: rotate(-0.35deg);
+}
+
+.os-window.is-focused {
+  box-shadow: 4px 4px 0 #111;
+  transform: rotate(0.2deg);
+}
+
+.os-window.is-minimized {
+  display: none;
+}
+
+.os-window.is-dragging {
+  opacity: 0.92;
+}
+
+.os-window__titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 40px;
+  padding: 0 8px 0 12px;
+  border-bottom: 2px solid #111;
+  background: #f4f0e6;
+  cursor: grab;
+  user-select: none;
+}
+
+.os-window.is-dragging .os-window__titlebar {
+  cursor: grabbing;
+}
+
+.os-window__title {
+  font-family: "Gochi Hand", cursive;
+  font-size: 26px;
+  line-height: 1;
+  color: #111;
+  -webkit-font-smoothing: none;
+}
+
+.os-window__controls {
+  display: flex;
+  gap: 6px;
+}
+
+.os-window__btn {
+  appearance: none;
+  width: 28px;
+  height: 26px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font-family: "Gochi Hand", cursive;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.os-window__btn:hover,
+.os-window__btn:focus-visible {
+  background: #111;
+  color: #fff;
+}
+
+.os-window__btn--close:hover,
+.os-window__btn--close:focus-visible {
+  background: #c43c3c;
+  border-color: #111;
+  color: #fff;
+}
+
+.os-window__body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: #fff;
+}
+
+
+.app-deadlock {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.app-deadlock__slide {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 18px;
+  padding: 18px 20px 12px;
+  box-sizing: border-box;
+}
+
+.app-deadlock__portrait {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  border: 2px solid #111;
+  background: #fff;
+}
+
+.app-deadlock__copy {
+  font-family: "Gochi Hand", cursive;
+  color: #111;
+  -webkit-font-smoothing: none;
+}
+
+.app-deadlock__name {
+  margin: 0 0 10px;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.app-deadlock__copy p {
+  margin: 0 0 12px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.app-deadlock__copy p:last-child {
+  margin-bottom: 0;
+}
+
+.app-deadlock__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px 14px;
+  border-top: 2px solid #111;
+  background: #f4f0e6;
+  flex-shrink: 0;
+}
+
+.app-deadlock__nav-btn {
+  appearance: none;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font-family: "Gochi Hand", cursive;
+  font-size: 20px;
+  line-height: 1;
+  padding: 6px 12px;
+  cursor: pointer;
+  -webkit-font-smoothing: none;
+}
+
+.app-deadlock__nav-btn:hover:not(:disabled),
+.app-deadlock__nav-btn:focus-visible:not(:disabled) {
+  background: #111;
+  color: #fff;
+}
+
+.app-deadlock__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.app-deadlock__pager {
+  font-family: "Gochi Hand", cursive;
+  font-size: 20px;
+  color: #111;
+  -webkit-font-smoothing: none;
+}
+
+.app-deadlock__slide--stats {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  align-content: start;
+  gap: 14px;
+}
+
+.app-deadlock__rank {
+  display: block;
+  width: min(280px, 100%);
+  height: auto;
+  border: 2px solid #111;
+  background: #fff;
+  image-rendering: auto;
+}
+
+.app-deadlock__link {
+  font-family: "Gochi Hand", cursive;
+  font-size: 24px;
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  -webkit-font-smoothing: none;
+}
+
+.app-deadlock__link:hover,
+.app-deadlock__link:focus-visible {
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .app-deadlock__slide {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+}
+
+
+.app-comps {
+  padding: 22px 26px 26px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+  font-family: "Gochi Hand", cursive;
+  color: #111;
+  -webkit-font-smoothing: none;
+}
+
+.app-comps__title {
+  margin: 0 0 16px;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.app-comps__heading {
+  margin: 16px 0 10px;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.app-comps__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-comps__list li {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.app-comps__label {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+.app-me {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 22px;
+  padding: 22px 24px 24px;
+  height: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.app-me__portrait {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border: 2px solid #111;
+  image-rendering: auto;
+  background: #fff;
+}
+
+.app-me__side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.app-me__quote {
+  margin: 0;
+  font-family: "Gochi Hand", cursive;
+  font-size: 32px;
+  line-height: 1.15;
+  color: #111;
+  -webkit-font-smoothing: none;
+}
+
+.app-me__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-me__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  min-width: 160px;
+  padding: 8px 14px;
+  border: 2px solid #111;
+  background: #f4f0e6;
+  color: #111;
+  text-decoration: none;
+  font-family: "Gochi Hand", cursive;
+  font-size: 24px;
+  line-height: 1;
+  -webkit-font-smoothing: none;
+}
+
+.app-me__btn:hover,
+.app-me__btn:focus-visible {
+  background: #111;
+  color: #fff;
+}
+
+.app-me__icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .app-me {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .app-me__actions {
+    align-items: center;
+  }
+}
+
+
+.app-school {
+  padding: 22px 26px 26px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+  font-family: "Gochi Hand", cursive;
+  color: #111;
+  -webkit-font-smoothing: none;
+}
+
+.app-school__title {
+  margin: 0 0 16px;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.app-school__summary {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.app-school__summary li {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.app-school__heading {
+  margin: 18px 0 10px;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.app-school__toggle {
+  appearance: none;
+  border: 2px solid #111;
+  background: #f4f0e6;
+  color: #111;
+  font-family: "Gochi Hand", cursive;
+  font-size: 22px;
+  line-height: 1;
+  padding: 8px 14px;
+  cursor: pointer;
+  -webkit-font-smoothing: none;
+}
+
+.app-school__toggle:hover,
+.app-school__toggle:focus-visible {
+  background: #111;
+  color: #fff;
+}
+
+.app-school__list {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-school__list.is-open {
+  display: flex;
+}
+
+.app-school__list li {
+  font-size: 22px;
+  line-height: 1.2;
+  padding-left: 14px;
+  position: relative;
+}
+
+.app-school__list li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
 }

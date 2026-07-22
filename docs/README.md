@@ -44,6 +44,7 @@ This documentation suite is written for:
 | --- | --- |
 | [installation.md](./installation.md) | Prerequisites, install, run, build, preview |
 | [configuration.md](./configuration.md) | TypeScript, Vite, HTML, fonts, package scripts |
+| [deployment.md](./deployment.md) | Vercel config, static hosting, live URL |
 | [development.md](./development.md) | Local workflow, conventions, how to extend |
 | [contributing.md](./contributing.md) | Contribution expectations and process |
 | [troubleshooting.md](./troubleshooting.md) | Common failures and fixes |

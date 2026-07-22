@@ -4,14 +4,19 @@ import { listApps } from "./apps/registry";
 import type { AppId } from "./apps/types";
 import { createWindowManager } from "./wm/windowManager";
 
+export type DesktopOptions = {
+  onShutdown: () => void;
+};
+
 export type DesktopController = {
   root: HTMLElement;
   show: () => void;
+  hide: () => void;
   fit: () => void;
   tick: (now: Date) => void;
 };
 
-export function createDesktop(): DesktopController {
+export function createDesktop(options: DesktopOptions): DesktopController {
   const root = document.createElement("section");
   root.className = "viewport desktop";
   root.id = "desktop";
@@ -39,7 +44,16 @@ export function createDesktop(): DesktopController {
           <div class="desktop__icons" data-icons></div>
           <div class="desktop__windows" data-windows></div>
         </div>
-        <footer class="menubar menubar--bottom" aria-hidden="true"></footer>
+        <footer class="menubar menubar--bottom">
+          <div class="power" data-power>
+            <button type="button" class="power__btn" data-power-btn aria-label="Power" aria-expanded="false" aria-haspopup="true">
+              <img class="power__icon" src="/power.png" alt="" draggable="false" width="38" height="18" />
+            </button>
+            <div class="power__menu" data-power-menu>
+              <button type="button" class="power__item" data-shutdown>shut off</button>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   `;
@@ -49,6 +63,9 @@ export function createDesktop(): DesktopController {
   const timeMount = root.querySelector<HTMLElement>("[data-menubar-time]")!;
   const iconsMount = root.querySelector<HTMLElement>("[data-icons]")!;
   const windowsLayer = root.querySelector<HTMLElement>("[data-windows]")!;
+  const powerBtn = root.querySelector<HTMLButtonElement>("[data-power-btn]")!;
+  const powerMenu = root.querySelector<HTMLElement>("[data-power-menu]")!;
+  const shutdownBtn = root.querySelector<HTMLButtonElement>("[data-shutdown]")!;
 
   const brandLabel = createPixelLabel({
     className: "pixel-label pixel-label--hires",
@@ -88,6 +105,44 @@ export function createDesktop(): DesktopController {
     iconsMount.append(button);
   }
 
+  function setPowerMenuOpen(open: boolean) {
+    powerMenu.classList.toggle("is-open", open);
+    powerBtn.setAttribute("aria-expanded", String(open));
+  }
+
+  powerBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setPowerMenuOpen(!powerMenu.classList.contains("is-open"));
+  });
+
+  let shuttingDown = false;
+  const SHUTDOWN_MS = 1400;
+
+  shutdownBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (shuttingDown) return;
+    shuttingDown = true;
+    setPowerMenuOpen(false);
+    root.classList.add("is-shutting-off");
+
+    window.setTimeout(() => {
+      hide();
+      root.classList.remove("is-shutting-off");
+      shuttingDown = false;
+      options.onShutdown();
+    }, SHUTDOWN_MS);
+  });
+
+  root.addEventListener("click", () => {
+    if (powerMenu.classList.contains("is-open")) {
+      setPowerMenuOpen(false);
+    }
+  });
+
+  powerMenu.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
   function paintChrome(now: Date) {
     if (!visible) return;
     const { time } = formatClock(now);
@@ -104,8 +159,11 @@ export function createDesktop(): DesktopController {
 
   function show() {
     visible = true;
+    shuttingDown = false;
+    root.classList.remove("is-shutting-off");
     root.classList.add("is-active");
     root.setAttribute("aria-hidden", "false");
+    setPowerMenuOpen(false);
 
     requestAnimationFrame(() => {
       fit();
@@ -113,10 +171,17 @@ export function createDesktop(): DesktopController {
     });
   }
 
+  function hide() {
+    visible = false;
+    setPowerMenuOpen(false);
+    root.classList.remove("is-active");
+    root.setAttribute("aria-hidden", "true");
+  }
+
   function tick(now: Date) {
     if (!visible) return;
     paintChrome(now);
   }
 
-  return { root, show, fit, tick };
+  return { root, show, hide, fit, tick };
 }

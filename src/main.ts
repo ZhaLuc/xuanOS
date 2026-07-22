@@ -39,7 +39,17 @@ const clockLabel = document.querySelector<HTMLElement>("[data-clock-label]")!;
 const pixelClock = createPixelClock();
 clockMount.append(pixelClock.canvas);
 
-const desktop = createDesktop();
+const desktop = createDesktop({
+  onShutdown: () => {
+    desktop.hide();
+    entered = false;
+    login.classList.remove("is-entering", "is-away");
+    login.removeAttribute("aria-disabled");
+    login.setAttribute("aria-hidden", "false");
+    login.focus();
+    fitLogin();
+  },
+});
 app.append(desktop.root);
 
 function renderLoginClock(now: Date) {

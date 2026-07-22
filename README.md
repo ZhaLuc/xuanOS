@@ -308,13 +308,11 @@ No automated unit/e2e suite is checked in. Use the manual smoke checklist in [do
 
 ## Deployment
 
-Host `dist/` on any static file host. Ensure:
+Production: [https://lexuan.vercel.app](https://lexuan.vercel.app)
 
-- Root serves `index.html`.
-- Asset paths like `/loader.png` resolve.
-- Outbound access to Google Fonts and (for Music) Apple’s preview CDN is allowed.
+`vercel.json` configures Vite builds to `dist/` with an SPA rewrite. You can also host `dist/` on any static file host. Ensure asset paths like `/loader.png` resolve and outbound access to Google Fonts (and Apple’s preview CDN for Music) is allowed.
 
-No first-party CI deploy config is required by the app.
+Details: [docs/deployment.md](./docs/deployment.md)
 
 ---
 

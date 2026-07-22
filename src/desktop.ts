@@ -3,6 +3,7 @@ import { createPixelLabel } from "./pixelText";
 import { listApps } from "./apps/registry";
 import type { AppId } from "./apps/types";
 import { createWindowManager } from "./wm/windowManager";
+import { enableIconDesktop } from "./desktopIcons";
 
 export type DesktopOptions = {
   onShutdown: () => void;
@@ -38,6 +39,18 @@ export function createDesktop(options: DesktopOptions): DesktopController {
           <div class="menubar__brand" data-brand></div>
           <div class="menubar__status">
             <div class="menubar__time" data-menubar-time></div>
+            <a
+              class="menubar__github"
+              href="https://github.com/LucasZhang3/pf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open this project on GitHub"
+              title="GitHub"
+            >
+              <svg class="menubar__github-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.8c.85 0 1.71.12 2.51.35 1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.83 0 .26.18.58.69.48A10.33 10.33 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+              </svg>
+            </a>
           </div>
         </header>
         <div class="desktop__workarea" data-workarea>
@@ -53,6 +66,7 @@ export function createDesktop(options: DesktopOptions): DesktopController {
               <button type="button" class="power__item" data-shutdown>shut off</button>
             </div>
           </div>
+          <div class="menubar__signature" data-signature></div>
         </footer>
       </div>
     </div>
@@ -66,6 +80,7 @@ export function createDesktop(options: DesktopOptions): DesktopController {
   const powerBtn = root.querySelector<HTMLButtonElement>("[data-power-btn]")!;
   const powerMenu = root.querySelector<HTMLElement>("[data-power-menu]")!;
   const shutdownBtn = root.querySelector<HTMLButtonElement>("[data-shutdown]")!;
+  const signatureMount = root.querySelector<HTMLElement>("[data-signature]")!;
 
   const brandLabel = createPixelLabel({
     className: "pixel-label pixel-label--hires",
@@ -81,16 +96,27 @@ export function createDesktop(options: DesktopOptions): DesktopController {
     crush: false,
     supersample: 2,
   });
+  const signatureLabel = createPixelLabel({
+    className: "pixel-label pixel-label--hires",
+    align: "right",
+    pixelSize: 1,
+    crush: false,
+    supersample: 2,
+    fontFamily: '"ZCOOL KuaiLe", "Gochi Hand", cursive',
+  });
 
   brandMount.append(brandLabel.canvas);
   timeMount.append(timeLabel.canvas);
+  signatureMount.append(signatureLabel.canvas);
 
   let scaleX = 1;
   let scaleY = 1;
   let visible = false;
 
   const wm = createWindowManager(windowsLayer, () => ({ x: scaleX, y: scaleY }));
+  const workarea = root.querySelector<HTMLElement>("[data-workarea]")!;
 
+  const iconButtons: HTMLButtonElement[] = [];
   for (const app of listApps()) {
     const button = document.createElement("button");
     button.type = "button";
@@ -101,9 +127,15 @@ export function createDesktop(options: DesktopOptions): DesktopController {
       <img class="desktop-icon__img" src="${app.iconSrc}" alt="" draggable="false" width="72" height="72" />
       <span class="desktop-icon__label">${app.iconLabel}</span>
     `;
-    button.addEventListener("click", () => wm.open(app.id as AppId));
     iconsMount.append(button);
+    iconButtons.push(button);
   }
+
+  enableIconDesktop(iconsMount, iconButtons, {
+    workarea,
+    getScale: () => ({ x: scaleX, y: scaleY }),
+    onOpen: (id: AppId) => wm.open(id),
+  });
 
   function setPowerMenuOpen(open: boolean) {
     powerMenu.classList.toggle("is-open", open);
@@ -148,6 +180,7 @@ export function createDesktop(options: DesktopOptions): DesktopController {
     const { time } = formatClock(now);
     brandLabel.draw("XUANOS");
     timeLabel.draw(time);
+    signatureLabel.draw("乐轩2026");
   }
 
   function fit() {

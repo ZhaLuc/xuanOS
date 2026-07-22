@@ -2,6 +2,7 @@ import "./style.css";
 import { formatClock, startClock } from "./clock";
 import { createPixelClock } from "./pixelClock";
 import { createDesktop } from "./desktop";
+import { createResolutionWarning } from "./resolutionWarning";
 
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 1080;
@@ -52,6 +53,9 @@ const desktop = createDesktop({
 });
 app.append(desktop.root);
 
+const resolutionWarning = createResolutionWarning();
+app.append(resolutionWarning.root);
+
 function renderLoginClock(now: Date) {
   const parts = formatClock(now);
   clockLabel.textContent = `${parts.weekday}, ${parts.date}, ${parts.time}`;
@@ -68,6 +72,7 @@ function fitLogin() {
 function fitAll() {
   fitLogin();
   desktop.fit();
+  resolutionWarning.sync();
 }
 
 let entered = false;

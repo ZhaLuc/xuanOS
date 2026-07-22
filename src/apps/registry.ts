@@ -1,5 +1,6 @@
 import { deadlockApp } from "./deadlock";
 import { meApp } from "./me";
+import { musicApp } from "./music";
 import { programmingCompsApp } from "./programmingComps";
 import { projectsApp } from "./projects";
 import { schoolApp } from "./school";
@@ -11,6 +12,7 @@ export const apps: Record<AppId, AppDefinition> = {
   projects: projectsApp,
   "programming-comps": programmingCompsApp,
   school: schoolApp,
+  music: musicApp,
   deadlock: deadlockApp,
 };
 

@@ -29,10 +29,9 @@ export type PixelLabelOptions = {
   className?: string;
   pixelSize?: number;
   align?: CanvasTextAlign;
-  
   crush?: boolean;
-  
   supersample?: number;
+  fontFamily?: string;
 };
 
 export type PixelLabel = {
@@ -45,6 +44,7 @@ export function createPixelLabel(options: PixelLabelOptions = {}): PixelLabel {
   const align = options.align ?? "left";
   const crush = options.crush ?? true;
   const supersample = Math.max(1, options.supersample ?? 1);
+  const fontFamily = options.fontFamily ?? '"Gochi Hand", cursive';
 
   const canvas = document.createElement("canvas");
   canvas.className = options.className ?? "pixel-label";
@@ -74,7 +74,7 @@ export function createPixelLabel(options: PixelLabelOptions = {}): PixelLabel {
     ctx.fillStyle = "#111";
     ctx.textAlign = align;
     ctx.textBaseline = "middle";
-    ctx.font = `${Math.max(8, Math.round(height * 0.72))}px "Gochi Hand", cursive`;
+    ctx.font = `${Math.max(8, Math.round(height * 0.72))}px ${fontFamily}`;
 
     const x =
       align === "center" ? width / 2 : align === "right" ? width - 2 * supersample : 2 * supersample;

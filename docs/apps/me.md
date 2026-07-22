@@ -2,7 +2,7 @@
 
 **Path:** `src/apps/me.ts`  
 **ID:** `me`  
-**Window:** 520×360, title `Me`  
+**Window:** 520×400, title `Me`  
 **Icon:** `/me-icon.png` · label `Me`
 
 ---
@@ -20,7 +20,7 @@ flowchart LR
   Root[".app-me"] --> Portrait["/me-portrait.png"]
   Root --> Side[".app-me__side"]
   Side --> Quote["i code stuff i like"]
-  Side --> Actions[GitHub + email buttons]
+  Side --> Actions[GitHub + LinkedIn + email buttons]
 ```
 
 | Element | Detail |
@@ -28,8 +28,9 @@ flowchart LR
 | Portrait | `/me-portrait.png`, markup width/height 180×240, `alt="me"` |
 | Quote | `i code stuff i like` |
 | GitHub | `https://github.com/ZhaLuc`, `target="_blank"`, `rel="noopener noreferrer"` |
+| LinkedIn | `https://www.linkedin.com/in/luczha/`, `target="_blank"`, `rel="noopener noreferrer"` |
 | Email | `mailto:lucaszhangbusiness@gmail.com` |
-| Icons | Inline SVG (GitHub mark + envelope) |
+| Icons | Inline SVG (GitHub mark, LinkedIn mark, envelope) |
 
 ---
 
@@ -42,7 +43,7 @@ export const meApp: AppDefinition = {
   iconSrc: "/me-icon.png",
   iconLabel: "Me",
   width: 520,
-  height: 360,
+  height: 400,
   createContent: createMeContent,
 };
 ```

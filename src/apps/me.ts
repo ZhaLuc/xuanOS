@@ -12,6 +12,12 @@ const gmailIcon = `
 </svg>
 `;
 
+const linkedinIcon = `
+<svg class="app-me__icon" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22 2H2v20h20V2z"/>
+</svg>
+`;
+
 function createMeContent(): HTMLElement {
   const body = document.createElement("div");
   body.className = "app-me";
@@ -38,6 +44,15 @@ function createMeContent(): HTMLElement {
         </a>
         <a
           class="app-me__btn"
+          href="https://www.linkedin.com/in/luczha/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ${linkedinIcon}
+          <span>linkedin</span>
+        </a>
+        <a
+          class="app-me__btn"
           href="mailto:lucaszhangbusiness@gmail.com"
         >
           ${gmailIcon}
@@ -55,6 +70,6 @@ export const meApp: AppDefinition = {
   iconSrc: "/me-icon.png",
   iconLabel: "Me",
   width: 520,
-  height: 360,
+  height: 400,
   createContent: createMeContent,
 };

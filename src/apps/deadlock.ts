@@ -39,7 +39,7 @@ const slides: Slide[] = [
     alt: "Wraith",
     paragraphs: [
       "serial gambler, best m1 carry in the game. favorite character to play.",
-      "wraith participates in the ritual primarily to gain wealth, popularity, and power, as the ruthless owner of a new york's gambling empire.",
+      "wraith cares for money. she is THE owner of a new york's gambling empire. shes tuff, i wanna move up the tax brackets too",
       "what a boss",
     ],
   },

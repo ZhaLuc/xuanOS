@@ -1,11 +1,15 @@
-export type AppId = "me" | "programming-comps" | "school" | "deadlock";
+export type AppId =
+  | "me"
+  | "projects"
+  | "programming-comps"
+  | "school"
+  | "deadlock";
 
 export type AppDefinition = {
   id: AppId;
   title: string;
   iconSrc: string;
   iconLabel: string;
-  
   width: number;
   height: number;
   createContent: () => HTMLElement;
@@ -13,6 +17,7 @@ export type AppDefinition = {
 
 export const appOrder: AppId[] = [
   "me",
+  "projects",
   "programming-comps",
   "school",
   "deadlock",

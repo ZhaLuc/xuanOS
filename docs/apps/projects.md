@@ -3,44 +3,62 @@
 **Path:** `src/apps/projects.ts`  
 **ID:** `projects`  
 **Window:** 560×520, title `Projects`  
-**Icon:** `/projects-icon.png`
+**Icon:** `/projects-icon.png` · label `Projects`
 
 ---
 
 ## Purpose
 
-Showcase repositories with short blurbs and GitHub links in an expandable list.
+Scrollable accordion of portfolio projects. Each row expands to a blurb and GitHub link.
 
 ---
 
 ## Data Model
 
 ```ts
-type Project = { name: string; blurb: string; url: string };
+type Project = {
+  name: string;
+  blurb: string;
+  url: string;
+};
 ```
 
-In-module array currently includes GenesisOS, mycc, GridMark, RayTracing, Underwater Robotics, WebRadarDL, ManualMapperWindows, AZSEF water analysis, BMECS EPICS, SaveEditorTBCA, AstroBeeQuest, Codeforces, USACO, Arch Linux Webpage.
+Projects are a **hardcoded array** in `projects.ts` (GenesisOS, mycc, GridMark, RayTracing, NURC, WebRadarDL, ManualMapperWindows, AZSEF water analysis, BMECS EPICS, SaveEditorTBCA, AstroBeeQuest, Codeforces, USACO, Arch Linux Webpage, …). Edit that array to change content — there is no CMS or API.
 
 ---
 
 ## Interaction
 
-Each item:
+```mermaid
+sequenceDiagram
+  actor User
+  participant Toggle
+  participant Item
 
-- Toggle button with chevron `↓` / `↑`.
-- Panel with blurb + `github` anchor (`target="_blank"`, `noopener noreferrer`).
-- Open state via `.is-open` on the item + `aria-expanded`.
+  User->>Toggle: click
+  Toggle->>Item: toggle is-open
+  Note over Toggle: aria-expanded + chevron ↑/↓
+```
 
-Multiple items may be open simultaneously.
+- Closed by default (`aria-expanded="false"`, chevron `↓`).
+- Multiple items may be open at once (independent toggles).
+- Links use `target="_blank"` and `rel="noopener noreferrer"`.
 
 ---
 
-## Extending
+## Registration
 
-Append to the `projects` array; no registry change needed.
+| Field | Value |
+| --- | --- |
+| `id` | `projects` |
+| `width` / `height` | 560 × 520 |
+| `createContent` | Builds title + list of toggle/panel pairs |
+
+No `destroy` hook.
 
 ---
 
 ## Related Documents
 
 - [Apps Overview](./overview.md)
+- [Security](../security.md) — `innerHTML` from author-controlled strings

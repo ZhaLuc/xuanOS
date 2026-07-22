@@ -3,13 +3,13 @@
 **Path:** `src/apps/music.ts`  
 **ID:** `music`  
 **Window:** 620×440, title `Music`  
-**Icon:** `/music-icon.png`
+**Icon:** `/music-icon.png` · label `Music`
 
 ---
 
 ## Purpose
 
-Show favorite artists and songs with artwork; play short official iTunes previews; adjust volume; stop cleanly when the window closes.
+Two-pane player: favorite artists (display only) and favorite songs with iTunes AAC preview playback and a volume slider.
 
 ---
 
@@ -17,46 +17,48 @@ Show favorite artists and songs with artwork; play short official iTunes preview
 
 ### Artists
 
-NewJeans, DEAN, aespa, ILLIT — images under `/music/artist-*.jpg`.
+| Name | Image |
+| --- | --- |
+| NewJeans | `/music/artist-newjeans.jpg` |
+| DEAN | `/music/artist-dean.jpg` |
+| aespa | `/music/artist-aespa.jpg` |
+| ILLIT | `/music/artist-illit.jpg` |
 
 ### Songs
 
-| Title | Artist | Preview |
-| --- | --- | --- |
-| Armageddon | aespa | Apple CDN m4a |
-| 54321 (feat. HAEWON) | pH-1 | Apple CDN m4a |
-| What 2 Do (…) | DEAN | Apple CDN m4a |
-| D (Half Moon) (…) | DEAN | Apple CDN m4a |
-| Aeao | Dynamicduo & DJ Premier | Apple CDN m4a |
-
-Covers under `/music/song-*.jpg`.
+Each song has `title`, `artist`, local cover under `/music/song-*.jpg`, and a remote `preview` URL on `audio-ssl.itunes.apple.com` (Armageddon, 54321, What 2 Do, Half Moon, Aeao).
 
 ---
 
-## Playback Architecture
-
-- One shared `Audio` instance per Music window content (`preload = "none"`).
-- Default volume 70% via range input.
-- Hover/focus/playing shows play button overlay on covers.
-- Click playing track pauses; click another switches `src` and plays.
-- `ended` / non-seeking `pause` clears `.is-playing` UI.
+## Playback Behavior
 
 ```mermaid
-flowchart TD
-  Play[Play click] --> Same{Same btn playing?}
-  Same -->|yes| Pause[audio.pause]
-  Same -->|no| Load[set src + play]
-  Load -->|success| UI[setPlaying true]
-  Load -->|catch| Clear[setPlaying false]
-  Close[WM close] --> Destroy[destroy]
-  Destroy --> Stop[pause + remove src]
+sequenceDiagram
+  actor User
+  participant PlayBtn
+  participant Audio
+
+  User->>PlayBtn: click
+  alt same song playing
+    PlayBtn->>Audio: pause
+  else other / idle
+    PlayBtn->>Audio: pause, set src, play()
+    Audio-->>PlayBtn: is-playing class
+  end
+  Note over Audio: destroy() on window close
 ```
+
+| Detail | Implementation |
+| --- | --- |
+| Element | `new Audio()`, `preload = "none"` |
+| Volume | Range 0–100, default **70**; maps to `audio.volume` |
+| Toggle | Clicking the active playing button pauses |
+| Errors | `play()` rejection clears playing UI |
+| Ended / pause | Clears `.is-playing` (pause handler ignores seek) |
 
 ---
 
-## `destroy()` Hook
-
-Attached on the content root:
+## Cleanup (`destroy`)
 
 ```ts
 musicRoot.destroy = () => {
@@ -66,32 +68,24 @@ musicRoot.destroy = () => {
 };
 ```
 
-Called by the window manager on close and by desktop shutdown via `closeAll()`.
-
-**Minimize does not stop audio** — only close/shutdown.
+The window manager calls this on close and on shutdown `closeAll()`, so audio does not continue after the Music window or OS session ends.
 
 ---
 
-## Failure Modes
+## Registration
 
-| Failure | Behavior |
+| Field | Value |
 | --- | --- |
-| Autoplay blocked | `play()` rejects → UI cleared |
-| CDN unreachable | Play fails → UI cleared |
-| Preview URL expires | Same as unreachable |
+| `id` | `music` |
+| `width` / `height` | 620 × 440 |
 
----
-
-## Security / Privacy Notes
-
-- Loads third-party audio from Apple.
-- No user audio upload.
-- See [Security](../security.md).
+Root class: `.app-music`.
 
 ---
 
 ## Related Documents
 
-- [Window Manager](../modules/window-manager.md)
-- [Shutdown workflow](../workflows/shutdown.md)
+- [Apps Overview](./overview.md)
+- [App Lifecycle](../workflows/app-lifecycle.md)
+- [Performance](../performance.md)
 - [Assets](../assets.md)

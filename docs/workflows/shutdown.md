@@ -2,13 +2,13 @@
 
 ## Goal
 
-Return from desktop to login with a theatrical “bad shutdown,” without leaving audio or windows behind.
+Return from an active desktop session to the login screen, closing apps and stopping media.
 
 ---
 
 ## Trigger
 
-Bottom-left power button → menu → **shut off**.
+User opens the power menu and clicks **shut off** (`data-shutdown`).
 
 ---
 
@@ -17,40 +17,49 @@ Bottom-left power button → menu → **shut off**.
 ```mermaid
 sequenceDiagram
   actor User
-  participant Power
   participant Desktop
   participant WM
   participant Main
-  participant Login
 
-  User->>Power: shut off
-  Power->>Desktop: shuttingDown=true, is-shutting-off
-  Note over Desktop: bad-shutdown animation ~1400ms
+  User->>Desktop: shut off
+  Desktop->>Desktop: is-shutting-off (bad-shutdown CSS)
+  Note over Desktop: SHUTDOWN_MS 1400ms
   Desktop->>WM: closeAll()
-  Note over WM: Music destroy stops audio
+  Note over WM: Music destroy() stops audio
   Desktop->>Desktop: hide()
   Desktop->>Main: onShutdown()
-  Main->>Login: clear away/entering, focus, fit
+  Main->>Main: entered=false, restore login focus
 ```
+
+Constants: `SHUTDOWN_MS = 1400` in `desktop.ts`. Animation: `bad-shutdown` on `.desktop.is-shutting-off .desktop__stage`.
+
+---
+
+## `onShutdown` (main.ts)
+
+- `desktop.hide()` already invoked from desktop path; callback also:
+  - Sets `entered = false`
+  - Removes login `is-entering` / `is-away`
+  - Restores login `aria-*` and focus
+  - `fitLogin()`
+
+Double shut-off while animating is ignored (`shuttingDown` flag).
 
 ---
 
 ## Guarantees
 
-- `closeAll` runs **before** hide so content `destroy` hooks execute while nodes still exist as expected.
-- `shuttingDown` prevents stacked timeouts from double-clicking shut off.
-- `entered` reset allows logging in again.
-
----
-
-## What Is Not Persisted
-
-After shutdown (and after reload), icon positions and window state are gone. Shutdown does not write to `localStorage`.
+| Concern | Result |
+| --- | --- |
+| Open windows | Removed via `closeAll` |
+| Music audio | Stopped if Music implemented `destroy` |
+| Icon positions | Kept in memory until full page reload |
+| Login clock | Resumes (login no longer `.is-away`) |
 
 ---
 
 ## Related Documents
 
+- [Desktop session](./desktop-session.md)
 - [Module: desktop](../modules/desktop.md)
-- [Apps: Music](../apps/music.md)
-- [Boot and login](./boot-and-login.md)
+- [App: Music](../apps/music.md)

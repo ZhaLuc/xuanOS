@@ -2,65 +2,73 @@
 
 ## Goal
 
-Describe steady-state use after login: chrome updates, icons, windows, and external links.
+Describe steady-state use after login: menubar chrome, icons, windows, and power menu — before shutdown.
 
 ---
 
-## Active Systems
-
-| System | Behavior while desktop visible |
-| --- | --- |
-| Clock tick | Redraws brand, time, signature canvases |
-| Icons | Drag/snap/open |
-| Window manager | Open/focus/minimize/close/drag |
-| Power menu | Toggle / outside click dismiss |
-| Resolution warning | Independent overlay; still syncs on resize |
-
----
-
-## Typical User Paths
+## Layout
 
 ```mermaid
-flowchart TD
-  A[Desktop visible] --> B[Drag icons]
-  A --> C[Open app]
-  A --> D[Click GitHub]
-  A --> E[Power menu]
-  C --> F[Use window]
-  F --> G[Minimize]
-  F --> H[Close]
-  F --> I[Drag titlebar]
-  E --> J[Shut off]
+flowchart TB
+  Stage[desktop stage 1920x1080]
+  Stage --> Top[Top menubar: XUANOS + time + GitHub]
+  Stage --> Work[Workarea: icons + windows]
+  Stage --> Bottom[Bottom menubar: power + 乐轩2026]
 ```
 
-### Opening apps
-
-Icon `pointerup` without drag → `wm.open(id)`.
-
-### Focusing
-
-Mousedown on a window raises z-index and `.is-focused`.
-
-### Menubar GitHub
-
-Opens the pf repository in a new tab; does not affect OS state.
+| Region | Contents |
+| --- | --- |
+| Top left | Pixel label **XUANOS** |
+| Top right | Live time (pixel) + GitHub link to `LucasZhang3/pf` |
+| Workarea | Icon column + window layer |
+| Bottom left | Power button → **shut off** |
+| Bottom right | Signature **乐轩2026** (ZCOOL KuaiLe) |
 
 ---
 
-## State That Exists Only in Memory
+## Icon Interaction
 
-- Icon grid positions.
-- Open/minimized windows and z-order.
-- Music playback position (if Music open).
-- Deadlock slide index.
-- Which project/school panels are expanded.
+From `desktopIcons.ts`:
 
-Reload discards all of the above.
+1. Icons start in column 0, rows 0…n−1 (`appOrder`).
+2. Pointer down begins potential drag; movement &gt; 4px marks `moved`.
+3. Pointer up without move → `onOpen(id)` → `wm.open(id)`.
+4. Drag snaps to 120×120 grid, clamped to workarea.
+
+Native `click` on icons is swallowed so open only happens via the pointer-up path (avoids double-open).
+
+---
+
+## Window Interaction
+
+| Action | Behavior |
+| --- | --- |
+| Open | Create window at cascading offset, or focus/restore existing |
+| Drag | Titlebar pointer capture; deltas ÷ scale |
+| Minimize | `.is-minimized`; no dock |
+| Close | Optional `destroy()`, remove DOM, drop map entry |
+| Focus | Raise z-index, `.is-focused` |
+
+See [App Lifecycle](./app-lifecycle.md) and [Window Manager](../modules/window-manager.md).
+
+---
+
+## Clock While Visible
+
+`main.ts` clock interval calls `desktop.tick(now)` when desktop is visible → repaints brand, time, signature pixel labels.
+
+---
+
+## Power Menu
+
+- Toggle via power button (`aria-expanded`).
+- Click outside closes menu.
+- **shut off** starts [Shutdown](./shutdown.md).
 
 ---
 
 ## Related Documents
 
 - [Module: desktop](../modules/desktop.md)
-- [App lifecycle](./app-lifecycle.md)
-- [Shutdown](./shutdown.md)
+- [Module: desktop-icons](../modules/desktop-icons.md)
+- [Boot and Login](./boot-and-login.md)

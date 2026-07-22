@@ -2,7 +2,7 @@
 
 ## Intent
 
-XUANOS is meant to feel **hand-drawn, imperfect, and personal** — closer to a sketchbook OS than a polished product landing page. The portfolio content (projects, school, contact) is real; the chrome is theatrical.
+XUANOS is meant to feel **hand-drawn, imperfect, and personal** - closer to a sketchbook OS than a polished product landing page. The portfolio content (projects, school, contact) is real; the chrome is theatrical.
 
 ---
 

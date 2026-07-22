@@ -38,8 +38,8 @@ Screen-reader text is separate: `main.ts` keeps a visually hidden `.stage__clock
 
 ## Dependencies
 
-- `./clock` — `ClockParts`
-- `./pixelText` — `crushToInk`
+- `./clock` - `ClockParts`
+- `./pixelText` - `crushToInk`
 
 ---
 

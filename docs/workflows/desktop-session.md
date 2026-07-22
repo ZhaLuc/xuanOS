@@ -2,7 +2,7 @@
 
 ## Goal
 
-Describe steady-state use after login: menubar chrome, icons, windows, and power menu — before shutdown.
+Describe steady-state use after login: menubar chrome, icons, windows, and power menu - before shutdown.
 
 ---
 

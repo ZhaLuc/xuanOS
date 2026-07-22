@@ -4,7 +4,7 @@ Terms used in XUANOS docs and source. Definitions match the implementation, not 
 
 ---
 
-## A–C
+## A-C
 
 | Term | Meaning here |
 | --- | --- |
@@ -13,13 +13,13 @@ Terms used in XUANOS docs and source. Definitions match the implementation, not 
 | **appOrder** | Array in `types.ts` controlling desktop icon order via `listApps()`. |
 | **Bad shutdown** | CSS animation `bad-shutdown` on `.desktop.is-shutting-off` (~1400 ms) before returning to login. |
 | **Boot** | `boot()` in `main.ts`: await fonts, then `fitAll()`. |
-| **Chrome** | Non-content UI: menubars, power control, window titlebar — not browser Chrome specifically. |
+| **Chrome** | Non-content UI: menubars, power control, window titlebar - not browser Chrome specifically. |
 | **Clock parts** | `{ weekday, date, time }` from `formatClock()` in `clock.ts`. |
 | **Crush / crushToInk** | Pixel processing in `pixelText.ts` that stamps canvas text into a low-ink look. |
 
 ---
 
-## D–L
+## D-L
 
 | Term | Meaning here |
 | --- | --- |
@@ -35,7 +35,7 @@ Terms used in XUANOS docs and source. Definitions match the implementation, not 
 
 ---
 
-## M–R
+## M-R
 
 | Term | Meaning here |
 | --- | --- |
@@ -51,7 +51,7 @@ Terms used in XUANOS docs and source. Definitions match the implementation, not 
 
 ---
 
-## S–Z
+## S-Z
 
 | Term | Meaning here |
 | --- | --- |

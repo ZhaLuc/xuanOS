@@ -75,7 +75,7 @@ Resize listener calls `fitAll()` → login fit + `desktop.fit()` + `resolutionWa
 | --- | --- |
 | Double enter | Second ignored (`entered` flag) |
 | Resize mid-yeet | `fitAll` still runs; animation continues |
-| Prefers-reduced-motion | Not specially handled — animation still runs |
+| Prefers-reduced-motion | Not specially handled - animation still runs |
 | Shutdown then re-enter | `onShutdown` clears `entered` and login classes |
 
 ---

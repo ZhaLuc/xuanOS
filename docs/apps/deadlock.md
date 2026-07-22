@@ -35,9 +35,9 @@ type StatsSlide = {
 
 | Index | Kind | Content |
 | --- | --- | --- |
-| 0 | character | Seven — `/seven.png` |
-| 1 | character | Wraith — `/wraith.png` |
-| 2 | character | Billy — `/billy.png` |
+| 0 | character | Seven - `/seven.png` |
+| 1 | character | Wraith - `/wraith.png` |
+| 2 | character | Billy - `/billy.png` |
 | 3 | stats | Rank image `/deadlock-rank.png` + link to Statlocker profile |
 
 ---

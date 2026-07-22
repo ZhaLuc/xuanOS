@@ -2,7 +2,7 @@
 
 ## Welcome
 
-Contributions that improve the hand-drawn OS portfolio — apps, polish, accessibility, docs — are welcome.
+Contributions that improve the hand-drawn OS portfolio - apps, polish, accessibility, docs - are welcome.
 
 ---
 
@@ -27,14 +27,14 @@ flowchart LR
 
 ## Authorship
 
-Commits for this project are attributed to the repository owner (**Lucas** / `lucaszhang1118@gmail.com`). Do not add Cursor or other AI co-author trailers to commits.
+Commits for this project are attributed to the repository owner (**Lucas** / `lucaszhang1118@gmail.com`).
 
 ---
 
 ## Code Expectations
 
 - Match existing style and stack (no unnecessary frameworks).
-- Preserve the imperfect, drawn aesthetic — see [Design Philosophy](./design-philosophy.md).
+- Preserve the imperfect, drawn aesthetic - see [Design Philosophy](./design-philosophy.md).
 - Avoid drive-by refactors unrelated to the PR goal.
 - Do not commit secrets, `.env` files, or large unrelated binaries.
 - Prefer absolute root asset paths (`/icon.png`) for `public/` files.
@@ -43,7 +43,7 @@ Commits for this project are attributed to the repository owner (**Lucas** / `lu
 
 ## Docs
 
-When adding modules/apps/workflows, add a focused page under `docs/` and link it from [`docs/README.md`](./README.md). Prefer Mermaid for control-flow diagrams. Base claims on the codebase — do not invent tests, CLI tools, or backends.
+When adding modules/apps/workflows, add a focused page under `docs/` and link it from [`docs/README.md`](./README.md). Prefer Mermaid for control-flow diagrams. Base claims on the codebase - do not invent tests, CLI tools, or backends.
 
 ---
 

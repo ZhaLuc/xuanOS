@@ -39,7 +39,7 @@ There is **no** requestAnimationFrame game loop for the OS chrome.
 ## Bundle and Build
 
 - Production build: `tsc && vite build` → static assets in `dist/`.
-- No framework runtime — only your modules + Vite’s ESM output.
+- No framework runtime - only your modules + Vite’s ESM output.
 - CSS is a single `src/style.css` imported from `main.ts`.
 
 **Tips:**
@@ -60,7 +60,7 @@ Largest cost is usually **PNG/JPG weight**, not TypeScript.
 | Music art | `public/music/*.jpg` | Local covers; previews stream from Apple |
 | Favicon | `favicon.png` | Small tab icon |
 
-Vite copies `public/` as-is — it does not automatically recompress images.
+Vite copies `public/` as-is - it does not automatically recompress images.
 
 ---
 
@@ -88,7 +88,7 @@ Autoplay policies mean the first play must follow a user gesture (the play butto
 
 Independent X/Y CSS scale on a 1920×1080 stage is cheap (compositor). Pointer math divides by scale factors so drag stays correct; that is O(1) per event.
 
-Non-uniform stretch can look soft on odd aspect ratios — that is a design tradeoff, not a CPU issue. See [Scaling and Viewport](./scaling-and-viewport.md).
+Non-uniform stretch can look soft on odd aspect ratios - that is a design tradeoff, not a CPU issue. See [Scaling and Viewport](./scaling-and-viewport.md).
 
 ---
 
@@ -109,9 +109,9 @@ Fonts are render-blocking by design for canvas text alignment after `document.fo
 
 There is no project script for perf. Use browser DevTools:
 
-- **Network** — asset sizes, Apple CDN failures.
-- **Performance** — confirm no unexpected rAF storms.
-- **Coverage / Lighthouse** — optional; not gated in CI.
+- **Network** - asset sizes, Apple CDN failures.
+- **Performance** - confirm no unexpected rAF storms.
+- **Coverage / Lighthouse** - optional; not gated in CI.
 
 ---
 

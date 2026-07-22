@@ -41,7 +41,7 @@ There is no project-specific CLI beyond the three npm scripts in `package.json`.
 ```mermaid
 flowchart TD
   A[Blank page] --> B{Console error?}
-  B -->|Missing #app| C[Restore index.html mount]
+  B -->|Missing
   B -->|Failed to fetch module| D[Run npm run dev]
   B -->|2D canvas unavailable| E[Use a modern browser]
   B -->|none| F[Hard refresh / clear cache]

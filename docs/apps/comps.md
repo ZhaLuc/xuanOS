@@ -17,9 +17,9 @@ Static competitive-programming and goals summary. No toggles or external fetches
 
 ### Competitions (as rendered)
 
-- codeforces — 2129 (master)
-- leetcode — 283 problems solved
-- usaco — gold
+- codeforces - 2129 (master)
+- leetcode - 283 problems solved
+- usaco - gold
 - 3x hackathon winner
 
 ### Working for
@@ -50,4 +50,4 @@ Root class: `.app-comps`. No `destroy` hook.
 ## Related Documents
 
 - [Apps Overview](./overview.md)
-- [School](./school.md) — related résumé-style content
+- [School](./school.md) - related résumé-style content

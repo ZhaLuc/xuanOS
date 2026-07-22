@@ -76,7 +76,7 @@ Edit the constants in the corresponding file under `src/apps/` (`projects.ts`, `
 
 ### Can I replace login/desktop art?
 
-Yes — replace `public/loader.png` / `public/desktop.png` at **1920×1080**, or update CSS/stage constants if dimensions change.
+Yes - replace `public/loader.png` / `public/desktop.png` at **1920×1080**, or update CSS/stage constants if dimensions change.
 
 ---
 
@@ -84,7 +84,7 @@ Yes — replace `public/loader.png` / `public/desktop.png` at **1920×1080**, or
 
 ### Who should commits be authored as?
 
-Repository owner **Lucas** `<lucaszhang1118@gmail.com>`. Do not add Cursor co-author trailers. See [Contributing](./contributing.md).
+Repository owner **Lucas** `<lucaszhang1118@gmail.com>`. See [Contributing](./contributing.md).
 
 ### Should I update docs?
 

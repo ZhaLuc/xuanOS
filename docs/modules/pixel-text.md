@@ -48,7 +48,7 @@ Desktop menubar uses `pixelSize: 1`, `crush: false`, `supersample: 2` (hires pat
 4. Position X by align (with small supersample padding).
 5. Optionally crush.
 
-If parent is missing or 0-sized, early return (blank). This is why desktop calls `requestAnimationFrame` twice after `show()` — layout must settle.
+If parent is missing or 0-sized, early return (blank). This is why desktop calls `requestAnimationFrame` twice after `show()` - layout must settle.
 
 ---
 

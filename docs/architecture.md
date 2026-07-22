@@ -23,10 +23,10 @@ This document describes how XUANOS is structured, how control and data move thro
 
 XUANOS is a **single-page client application** with:
 
-- **No framework** — modules create and mutate DOM nodes directly.
-- **Factory controllers** — `createDesktop`, `createWindowManager`, `createPixelLabel`, etc. return objects with methods rather than classes.
-- **Registry-based apps** — each app is an `AppDefinition`; the window manager does not know app internals.
-- **Fixed design stage** — visual layout is authored at 1920×1080 and scaled to the viewport.
+- **No framework** - modules create and mutate DOM nodes directly.
+- **Factory controllers** - `createDesktop`, `createWindowManager`, `createPixelLabel`, etc. return objects with methods rather than classes.
+- **Registry-based apps** - each app is an `AppDefinition`; the window manager does not know app internals.
+- **Fixed design stage** - visual layout is authored at 1920×1080 and scaled to the viewport.
 
 There is no Flux/Redux store, no router, and no server. Application state lives in closures (window map, icon positions, music `Audio` instance, `entered` / `visible` flags).
 
@@ -36,24 +36,24 @@ There is no Flux/Redux store, no router, and no server. Application state lives 
 
 ```text
 Portfolio/
-├── index.html              # Shell: fonts, favicon, #app mount
-├── package.json            # Scripts + Vite/TS tooling
-├── tsconfig.json           # Strict-ish TypeScript for src/
-├── public/                 # Static assets served at /
+├── index.html
+├── package.json
+├── tsconfig.json
+├── public/
 │   ├── favicon.png
-│   ├── loader.png          # Login artwork
-│   ├── desktop.png         # Desktop artwork
-│   ├── *-icon.png          # Desktop icons
-│   ├── music/              # Artist/song artwork
-│   └── …                   # Me/Deadlock portraits, power, etc.
+│   ├── loader.png
+│   ├── desktop.png
+│   ├── *-icon.png
+│   ├── music/
+│   └── …
 ├── src/
-│   ├── main.ts             # Boot + login orchestration
-│   ├── style.css           # All styles
-│   ├── clock.ts            # Time formatting + interval
-│   ├── pixelText.ts        # Generic pixel labels
-│   ├── pixelClock.ts       # Login clock canvas
-│   ├── desktop.ts          # Desktop shell
-│   ├── desktopIcons.ts     # Icon drag/open
+│   ├── main.ts
+│   ├── style.css
+│   ├── clock.ts
+│   ├── pixelText.ts
+│   ├── pixelClock.ts
+│   ├── desktop.ts
+│   ├── desktopIcons.ts
 │   ├── resolutionWarning.ts
 │   ├── wm/
 │   │   └── windowManager.ts
@@ -66,7 +66,7 @@ Portfolio/
 │       ├── school.ts
 │       ├── music.ts
 │       └── deadlock.ts
-└── docs/                   # This documentation suite
+└── docs/
 ```
 
 ---
@@ -189,7 +189,7 @@ Triggered by bottom-left power → **shut off**:
 1. Guard with `shuttingDown` so double-clicks do not stack timers.
 2. Close power menu; add `is-shutting-off` (CSS `bad-shutdown` animation).
 3. After 1400 ms:
-   - `wm.closeAll()` — runs optional content `destroy()` (stops Music audio).
+   - `wm.closeAll()` - runs optional content `destroy()` (stops Music audio).
    - `hide()` desktop.
    - Clear shutdown class/flags.
    - Call `onShutdown()` from `main.ts`, which restores login focus and clears `entered`.

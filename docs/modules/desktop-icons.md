@@ -70,8 +70,8 @@ During drag, left/top are clamped so the icon stays inside the workarea. After r
 | Case | Behavior |
 | --- | --- |
 | Non-primary button | Ignored on pointerdown |
-| Overlapping icons | Allowed — no collision resolution |
-| Tiny workarea | `maxCol`/`maxRow` can be 0 — all icons stack/clamp to origin cells |
+| Overlapping icons | Allowed - no collision resolution |
+| Tiny workarea | `maxCol`/`maxRow` can be 0 - all icons stack/clamp to origin cells |
 | `releasePointerCapture` throws | Swallowed |
 
 ---

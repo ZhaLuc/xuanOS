@@ -34,7 +34,7 @@ flowchart TB
 
 `bindToggle()` keeps panel `.is-open`, `aria-expanded`, and button label (`show … ↓` / `hide … ↑`) in sync. Both sections start **closed**.
 
-AP courses and extracurricular strings live in `apCourses` and `extracurriculars` arrays in source — edit those arrays to update the portfolio.
+AP courses and extracurricular strings live in `apCourses` and `extracurriculars` arrays in source - edit those arrays to update the portfolio.
 
 ---
 

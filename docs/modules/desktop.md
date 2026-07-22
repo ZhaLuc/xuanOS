@@ -1,7 +1,7 @@
 # Module: `desktop.ts`
 
 **Path:** `src/desktop.ts`  
-**Role:** Build and control the desktop shell — stage art, menubars, icons, windows layer, power menu, shutdown.
+**Role:** Build and control the desktop shell - stage art, menubars, icons, windows layer, power menu, shutdown.
 
 ---
 

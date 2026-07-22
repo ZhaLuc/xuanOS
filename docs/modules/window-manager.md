@@ -41,7 +41,7 @@ type WindowRecord = {
 };
 ```
 
-Stored in a `Map<AppId, WindowRecord>` — **at most one window per app id**.
+Stored in a `Map<AppId, WindowRecord>` - **at most one window per app id**.
 
 ---
 
@@ -103,7 +103,7 @@ Not part of `AppDefinition`. Music attaches `destroy` to stop audio. Other apps 
 - Ignores pointerdown on buttons inside the titlebar.
 - Uses pointer capture.
 - Converts movement by `/ scale`.
-- No bounds clamping — windows may leave the workarea.
+- No bounds clamping - windows may leave the workarea.
 - Adds `.is-dragging` during drag.
 
 ---
@@ -133,7 +133,7 @@ sequenceDiagram
 
 | Case | Behavior |
 | --- | --- |
-| Open same app twice | Focus/restore only — content not recreated |
+| Open same app twice | Focus/restore only - content not recreated |
 | Focus while minimized | Focus no-ops until restore |
 | Close unknown id | No-op |
 | Missing destroy | Close still removes DOM |

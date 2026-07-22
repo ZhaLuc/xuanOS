@@ -1,7 +1,7 @@
 # Module: `main.ts`
 
 **Path:** `src/main.ts`  
-**Role:** Application entry point — boots login, wires desktop and resolution warning, owns the enter animation and global clock loop.
+**Role:** Application entry point - boots login, wires desktop and resolution warning, owns the enter animation and global clock loop.
 
 ---
 
@@ -107,10 +107,10 @@ Desktop `tick` itself no-ops when not visible.
 ## Dependencies
 
 - `./style.css`
-- `./clock` — `formatClock`, `startClock`
-- `./pixelClock` — `createPixelClock`
-- `./desktop` — `createDesktop`
-- `./resolutionWarning` — `createResolutionWarning`
+- `./clock` - `formatClock`, `startClock`
+- `./pixelClock` - `createPixelClock`
+- `./desktop` - `createDesktop`
+- `./resolutionWarning` - `createResolutionWarning`
 
 ---
 

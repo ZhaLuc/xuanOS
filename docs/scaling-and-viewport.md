@@ -75,7 +75,7 @@ dy = (clientY - originY) / scale.y
 
 | Class | Effect |
 | --- | --- |
-| `.viewport.is-away` | `display: none !important` — login after enter |
+| `.viewport.is-away` | `display: none !important` - login after enter |
 | `.desktop.is-active` | Desktop shown |
 | `[hidden]` on viewport | Also forced hidden (defense in depth) |
 

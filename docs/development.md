@@ -28,7 +28,7 @@ flowchart LR
 | CSS | BEM-ish `block__element--modifier` in `src/style.css` |
 | Comments | Prefer no comments unless needed; docs live in `/docs` |
 | Apps | Register in `types` + `registry`; one file per app |
-| Git author | Commits as Lucas; no Cursor co-author trailers |
+| Git author | Commits as Lucas |
 
 ---
 
@@ -54,7 +54,7 @@ Replace `public/loader.png` or `public/desktop.png` at **1920×1080**. If dimens
 
 - Icons: click-without-drag opens; drag snaps to 120×120 grid.
 - Windows: single instance per `AppId`; reopen focuses or restores minimized.
-- Shutdown: `closeAll()` then login restore — audio must stop via Music `destroy`.
+- Shutdown: `closeAll()` then login restore - audio must stop via Music `destroy`.
 - Pointer math must divide by current scale factors.
 
 ---

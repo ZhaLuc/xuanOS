@@ -30,8 +30,8 @@ export function getApp(id: AppId): AppDefinition;
 export function listApps(): AppDefinition[];
 ```
 
-- `getApp` — used by the window manager when opening.
-- `listApps` — maps `appOrder` through `apps` for icon creation.
+- `getApp` - used by the window manager when opening.
+- `listApps` - maps `appOrder` through `apps` for icon creation.
 
 **No dynamic loading:** all apps are statically imported.
 

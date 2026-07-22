@@ -35,7 +35,7 @@ Key compiler options:
 | --- | --- |
 | `target` / `lib` | ES2023 + DOM |
 | `module` / `moduleResolution` | `esnext` / `bundler` (Vite) |
-| `noEmit` | `true` — `tsc` is typecheck only |
+| `noEmit` | `true` - `tsc` is typecheck only |
 | `verbatimModuleSyntax` | Forces type-only imports where needed |
 | `noUnusedLocals` / `noUnusedParameters` | Unused symbols fail typecheck |
 | `erasableSyntaxOnly` | Restricts TS syntax Vite can strip |

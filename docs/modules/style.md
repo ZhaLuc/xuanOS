@@ -1,7 +1,7 @@
 # Module: `style.css`
 
 **Path:** `src/style.css`  
-**Role:** Single stylesheet for the entire product — reset-ish base, viewports, login/desktop chrome, windows, and every app.
+**Role:** Single stylesheet for the entire product - reset-ish base, viewports, login/desktop chrome, windows, and every app.
 
 ---
 

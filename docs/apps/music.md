@@ -51,7 +51,7 @@ sequenceDiagram
 | Detail | Implementation |
 | --- | --- |
 | Element | `new Audio()`, `preload = "none"` |
-| Volume | Range 0–100, default **70**; maps to `audio.volume` |
+| Volume | Range 0-100, default **70**; maps to `audio.volume` |
 | Toggle | Clicking the active playing button pauses |
 | Errors | `play()` rejection clears playing UI |
 | Ended / pause | Clears `.is-playing` (pause handler ignores seek) |

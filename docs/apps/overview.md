@@ -76,7 +76,7 @@ To add an app:
 ## Shared Assumptions
 
 - Apps do not import the window manager.
-- Apps should not assume they stay mounted forever — Music demonstrates cleanup.
+- Apps should not assume they stay mounted forever - Music demonstrates cleanup.
 - External links use `target="_blank"` and `rel="noopener noreferrer"` where applicable.
 - Copy tone matches the hand-drawn OS (casual, lowercase headings often).
 

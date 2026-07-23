@@ -18,49 +18,87 @@ const linkedinIcon = `
 </svg>
 `;
 
+const resumeIcon = `
+<svg class="app-me__icon" viewBox="0 0 24 24" aria-hidden="true">
+  <path fill="currentColor" d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm1 7V3.5L18.5 9H15zM8 13h8v2H8v-2zm0 4h8v2H8v-2zm0-8h5v2H8V9z"/>
+</svg>
+`;
+
 function createMeContent(): HTMLElement {
   const body = document.createElement("div");
   body.className = "app-me";
   body.innerHTML = `
-    <img
-      class="app-me__portrait"
-      src="/me-portrait.png"
-      alt="me"
-      draggable="false"
-      width="180"
-      height="240"
-    />
-    <div class="app-me__side">
-      <p class="app-me__quote">i code stuff i like</p>
-      <div class="app-me__actions">
-        <a
-          class="app-me__btn"
-          href="https://github.com/ZhaLuc"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ${githubIcon}
-          <span>github</span>
-        </a>
-        <a
-          class="app-me__btn"
-          href="https://www.linkedin.com/in/luczha/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ${linkedinIcon}
-          <span>linkedin</span>
-        </a>
-        <a
-          class="app-me__btn"
-          href="mailto:lucaszhangbusiness@gmail.com"
-        >
-          ${gmailIcon}
-          <span>email</span>
-        </a>
+    <div class="app-me__main" data-me-main>
+      <img
+        class="app-me__portrait"
+        src="/me-portrait.png"
+        alt="me"
+        draggable="false"
+        width="180"
+        height="240"
+      />
+      <div class="app-me__side">
+        <p class="app-me__quote">i code stuff i like</p>
+        <div class="app-me__actions">
+          <a
+            class="app-me__btn"
+            href="https://github.com/ZhaLuc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ${githubIcon}
+            <span>github</span>
+          </a>
+          <a
+            class="app-me__btn"
+            href="https://www.linkedin.com/in/luczha/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ${linkedinIcon}
+            <span>linkedin</span>
+          </a>
+          <a
+            class="app-me__btn"
+            href="mailto:lucaszhangbusiness@gmail.com"
+          >
+            ${gmailIcon}
+            <span>email</span>
+          </a>
+          <button type="button" class="app-me__btn" data-resume>
+            ${resumeIcon}
+            <span>resume</span>
+          </button>
+        </div>
       </div>
     </div>
+    <div class="app-me__resume" data-resume-view hidden>
+      <div class="app-me__resume-bar">
+        <span class="app-me__resume-title">resume</span>
+        <button type="button" class="app-me__resume-close" data-resume-close aria-label="Close resume">x</button>
+      </div>
+      <iframe
+        class="app-me__resume-frame"
+        title="Resume PDF"
+        src="/resume.pdf#toolbar=1&navpanes=0"
+      ></iframe>
+    </div>
   `;
+
+  const main = body.querySelector<HTMLElement>("[data-me-main]")!;
+  const resumeView = body.querySelector<HTMLElement>("[data-resume-view]")!;
+  const openBtn = body.querySelector<HTMLButtonElement>("[data-resume]")!;
+  const closeBtn = body.querySelector<HTMLButtonElement>("[data-resume-close]")!;
+
+  function setResumeOpen(open: boolean) {
+    resumeView.hidden = !open;
+    main.hidden = open;
+    body.classList.toggle("is-resume-open", open);
+  }
+
+  openBtn.addEventListener("click", () => setResumeOpen(true));
+  closeBtn.addEventListener("click", () => setResumeOpen(false));
+
   return body;
 }
 
@@ -69,7 +107,7 @@ export const meApp: AppDefinition = {
   title: "Me",
   iconSrc: "/me-icon.png",
   iconLabel: "Me",
-  width: 520,
-  height: 400,
+  width: 560,
+  height: 460,
   createContent: createMeContent,
 };

@@ -2,7 +2,7 @@
 
 **Path:** `src/apps/programmingComps.ts`  
 **ID:** `programming-comps`  
-**Window:** 480×420, title `Comps`  
+**Window:** 480×480, title `Comps`  
 **Icon:** `/programming-comps-icon.png` · label `Comps`
 
 ---
@@ -18,8 +18,10 @@ Static competitive-programming and goals summary. No toggles or external fetches
 ### Competitions (as rendered)
 
 - codeforces - 2129 (master)
-- leetcode - 283 problems solved
+- leetcode - 133 problems solved
 - usaco - gold
+- National Underwater Robotics Competition - 3rd place
+- EPICS research presentation - ASU Ira A. Fulton Schools of Engineering
 - 3x hackathon winner
 
 ### Working for
@@ -41,7 +43,7 @@ Copy is authored in the template string inside `createProgrammingCompsContent()`
 | --- | --- |
 | `id` | `programming-comps` |
 | `title` | `Comps` |
-| `width` / `height` | 480 × 420 |
+| `width` / `height` | 480 × 480 |
 
 Root class: `.app-comps`. No `destroy` hook.
 

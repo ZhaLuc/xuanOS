@@ -57,6 +57,29 @@ const favoriteSongs: Song[] = [
   },
 ];
 
+const VOLUME_KEY = "xuanos-music-volume";
+const DEFAULT_VOLUME = 70;
+
+function readSavedVolume(): number {
+  try {
+    const raw = localStorage.getItem(VOLUME_KEY);
+    if (raw == null) return DEFAULT_VOLUME;
+    const value = Number(raw);
+    if (!Number.isFinite(value)) return DEFAULT_VOLUME;
+    return Math.min(100, Math.max(0, Math.round(value)));
+  } catch {
+    return DEFAULT_VOLUME;
+  }
+}
+
+function writeSavedVolume(value: number) {
+  try {
+    localStorage.setItem(VOLUME_KEY, String(value));
+  } catch {
+    void 0;
+  }
+}
+
 function createMusicContent(): HTMLElement {
   const body = document.createElement("div");
   body.className = "app-music";
@@ -64,6 +87,7 @@ function createMusicContent(): HTMLElement {
   const audio = new Audio();
   audio.preload = "none";
   let activeButton: HTMLButtonElement | null = null;
+  const savedVolume = readSavedVolume();
 
   function setPlaying(button: HTMLButtonElement | null, playing: boolean) {
     body
@@ -106,7 +130,7 @@ function createMusicContent(): HTMLElement {
             type="range"
             min="0"
             max="100"
-            value="70"
+            value="${savedVolume}"
             aria-label="Preview volume"
           />
         </label>
@@ -118,9 +142,11 @@ function createMusicContent(): HTMLElement {
   const songList = body.querySelector<HTMLElement>("[data-songs]")!;
   const volumeSlider = body.querySelector<HTMLInputElement>("[data-volume]")!;
 
-  audio.volume = Number(volumeSlider.value) / 100;
+  audio.volume = savedVolume / 100;
   volumeSlider.addEventListener("input", () => {
-    audio.volume = Number(volumeSlider.value) / 100;
+    const value = Number(volumeSlider.value);
+    audio.volume = value / 100;
+    writeSavedVolume(value);
   });
 
   favoriteSongs.forEach((song) => {

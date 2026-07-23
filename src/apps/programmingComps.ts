@@ -9,8 +9,10 @@ function createProgrammingCompsContent(): HTMLElement {
     <h3 class="app-comps__heading">competitions</h3>
     <ul class="app-comps__list">
       <li><span class="app-comps__label">codeforces</span> - 2129 (master)</li>
-      <li><span class="app-comps__label">leetcode</span> - 283 problems solved</li>
+      <li><span class="app-comps__label">leetcode</span> - 133 problems solved</li>
       <li><span class="app-comps__label">usaco</span> - gold</li>
+      <li>National Underwater Robotics Competition - 3rd place</li>
+      <li>EPICS research presentation - ASU Ira A. Fulton Schools of Engineering</li>
       <li>3x hackathon winner</li>
     </ul>
 
@@ -33,6 +35,6 @@ export const programmingCompsApp: AppDefinition = {
   iconSrc: "/programming-comps-icon.png",
   iconLabel: "Comps",
   width: 480,
-  height: 420,
+  height: 480,
   createContent: createProgrammingCompsContent,
 };

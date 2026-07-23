@@ -103,7 +103,7 @@ These are constants, not env vars:
 | `SHUTDOWN_MS = 1400` | `desktop.ts` | Shutdown animation duration |
 | `MIN_WIDTH` / `MIN_HEIGHT` | `resolutionWarning.ts` | Warning threshold |
 | `GRID_X` / `GRID_Y` | `desktopIcons.ts` | Icon snap grid |
-| Default volume `70` | `music.ts` HTML range | Preview volume |
+| Default volume `70` (persisted) | `music.ts` + `localStorage` key `xuanos-music-volume` | Preview volume |
 
 ---
 

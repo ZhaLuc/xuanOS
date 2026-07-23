@@ -686,10 +686,27 @@ body {
 }
 
 .app-notes__title {
-  margin: 0 0 12px;
+  margin: 0 0 6px;
   font-size: 32px;
   font-weight: 400;
   line-height: 1.1;
+}
+
+.app-notes__date {
+  margin: 0 0 14px;
+  font-size: 20px;
+  line-height: 1.1;
+  color: #555;
+}
+
+.app-notes__image {
+  display: block;
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border: 2px solid #111;
+  margin: 0 0 14px;
+  background: #fff;
 }
 
 .app-notes__copy p {

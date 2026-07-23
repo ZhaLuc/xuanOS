@@ -2,12 +2,18 @@ import type { AppDefinition } from "./types";
 
 type NotePage = {
   title: string;
+  date?: string;
+  image?: string;
+  imageAlt?: string;
   paragraphs: string[];
 };
 
 const pages: NotePage[] = [
   {
-    title: "",
+    title: "sushi with family and friends",
+    date: "7/23/2026",
+    image: "/notes/sushi.png",
+    imageAlt: "Sushi boat dinner",
     paragraphs: [],
   },
 ];
@@ -37,6 +43,12 @@ function createNotesContent(): HTMLElement {
     const titleHtml = page.title
       ? `<h2 class="app-notes__title">${page.title}</h2>`
       : "";
+    const dateHtml = page.date
+      ? `<p class="app-notes__date">${page.date}</p>`
+      : "";
+    const imageHtml = page.image
+      ? `<img class="app-notes__image" src="${page.image}" alt="${page.imageAlt ?? ""}" draggable="false" />`
+      : "";
     const bodyHtml =
       page.paragraphs.length > 0
         ? page.paragraphs.map((p) => `<p>${p}</p>`).join("")
@@ -45,6 +57,8 @@ function createNotesContent(): HTMLElement {
     pageMount.innerHTML = `
       <div class="app-notes__copy">
         ${titleHtml}
+        ${dateHtml}
+        ${imageHtml}
         ${bodyHtml}
       </div>
     `;
@@ -76,6 +90,6 @@ export const notesApp: AppDefinition = {
   iconSrc: "/notes-icon.png",
   iconLabel: "Notes",
   width: 520,
-  height: 420,
+  height: 520,
   createContent: createNotesContent,
 };

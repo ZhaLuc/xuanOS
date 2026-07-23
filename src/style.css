@@ -662,6 +662,88 @@ body {
   -webkit-font-smoothing: none;
 }
 
+.app-notes {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.app-notes__page {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 20px 22px 14px;
+  box-sizing: border-box;
+}
+
+.app-notes__copy {
+  font-family: "Gochi Hand", cursive;
+  color: #111;
+  -webkit-font-smoothing: none;
+  min-height: 100%;
+}
+
+.app-notes__title {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.app-notes__copy p {
+  margin: 0 0 12px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.app-notes__copy p:last-child {
+  margin-bottom: 0;
+}
+
+.app-notes__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px 14px;
+  border-top: 2px solid #111;
+  background: #f4f0e6;
+  flex-shrink: 0;
+}
+
+.app-notes__nav-btn {
+  appearance: none;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font-family: "Gochi Hand", cursive;
+  font-size: 20px;
+  line-height: 1;
+  padding: 6px 12px;
+  cursor: pointer;
+  -webkit-font-smoothing: none;
+}
+
+.app-notes__nav-btn:hover:not(:disabled),
+.app-notes__nav-btn:focus-visible:not(:disabled) {
+  background: #111;
+  color: #fff;
+}
+
+.app-notes__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.app-notes__pager {
+  font-family: "Gochi Hand", cursive;
+  font-size: 20px;
+  color: #111;
+  -webkit-font-smoothing: none;
+}
+
 .app-deadlock__slide--stats {
   grid-template-columns: 1fr;
   justify-items: center;

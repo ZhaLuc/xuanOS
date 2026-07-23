@@ -1,5 +1,6 @@
 export type AppId =
   | "me"
+  | "notes"
   | "projects"
   | "programming-comps"
   | "school"
@@ -18,6 +19,7 @@ export type AppDefinition = {
 
 export const appOrder: AppId[] = [
   "me",
+  "notes",
   "projects",
   "programming-comps",
   "school",

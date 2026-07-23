@@ -857,24 +857,6 @@ body {
   height: 100%;
   box-sizing: border-box;
   align-items: center;
-  position: relative;
-  min-height: 0;
-}
-
-.app-me.is-resume-open {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
-  padding: 0;
-}
-
-.app-me__main {
-  display: contents;
-}
-
-.app-me__main[hidden] {
-  display: none !important;
 }
 
 .app-me__portrait {
@@ -939,74 +921,14 @@ body {
   flex-shrink: 0;
 }
 
-.app-me__resume {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.app-me__resume[hidden] {
-  display: none !important;
-}
-
-.app-me__resume-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 12px;
-  border-bottom: 2px solid #111;
-  background: #f4f0e6;
-  flex-shrink: 0;
-}
-
-.app-me__resume-title {
-  font-family: "Gochi Hand", cursive;
-  font-size: 22px;
-  line-height: 1;
-  color: #111;
-  -webkit-font-smoothing: none;
-}
-
-.app-me__resume-close {
-  appearance: none;
-  width: 28px;
-  height: 26px;
-  border: 2px solid #111;
-  background: #fff;
-  color: #111;
-  font-family: "Gochi Hand", cursive;
-  font-size: 18px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0;
-}
-
-.app-me__resume-close:hover,
-.app-me__resume-close:focus-visible {
-  background: #111;
-  color: #fff;
-}
-
-.app-me__resume-frame {
-  flex: 1;
-  width: 100%;
-  min-height: 0;
-  border: 0;
-  background: #fff;
-}
-
 @media (max-width: 700px) {
-  .app-me:not(.is-resume-open) {
+  .app-me {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
   }
 
-  .app-me:not(.is-resume-open) .app-me__actions {
+  .app-me__actions {
     align-items: center;
   }
 }

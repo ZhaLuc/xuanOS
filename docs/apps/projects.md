@@ -23,7 +23,7 @@ type Project = {
 };
 ```
 
-Projects are a **hardcoded array** in `projects.ts` (GenesisOS, mycc, GridMark, RayTracing, NURC, WebRadarDL, ManualMapperWindows, AZSEF water analysis, BMECS EPICS, SaveEditorTBCA, AstroBeeQuest, Codeforces, USACO, Arch Linux Webpage, …). Edit that array to change content - there is no CMS or API.
+Projects are a **hardcoded array** in `projects.ts` (GenesisOS, mycc, GridMark, RayTracing, NURC, WebRadarDL, ManualMapperWindows, AZSEF water analysis, BMECS EPICS, SaveEditorTBC, AstroBeeQuest, Codeforces, USACO, Arch Linux Webpage, …). Edit that array to change content - there is no CMS or API.
 
 ---
 

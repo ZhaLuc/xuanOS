@@ -62,10 +62,10 @@ const projects: Project[] = [
     url: "https://github.com/ZhaLuc/BMECS-EPICS",
   },
   {
-    name: "SaveEditorTBCA",
+    name: "SaveEditorTBC",
     blurb:
       "Windows desktop app for editing and transferring The Battle Cats save files through a simple graphical interface.",
-    url: "https://github.com/ZhaLuc/SaveEditorTBCA",
+    url: "https://github.com/ZhaLuc/SaveEditorTBC",
   },
   {
     name: "AstroBeeQuest",

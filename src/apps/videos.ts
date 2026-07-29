@@ -42,55 +42,73 @@ function createVideosContent(): HTMLElement {
   const root = document.createElement("div");
   root.className = "app-videos";
 
+  let index = 0;
+
   root.innerHTML = `
-    <h2 class="app-videos__heading">videos</h2>
-    <ul class="app-videos__list">
-      ${videos
-        .map(
-          (video) => `
-        <li class="app-videos__item">
-          <a
-            class="app-videos__card"
-            href="${video.url}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div class="app-videos__thumb-wrap">
-              <img
-                class="app-videos__thumb"
-                src="${video.thumbnail}"
-                alt=""
-                draggable="false"
-                width="320"
-                height="180"
-              />
-              <span class="app-videos__play" aria-hidden="true">
-                <img
-                  class="app-videos__play-icon"
-                  src="/videos-icon.png"
-                  alt=""
-                  draggable="false"
-                />
-              </span>
-            </div>
-            <div class="app-videos__meta">
-              <span class="app-videos__title">${video.title}</span>
-              <span class="app-videos__views">${formatViews(video.views)}</span>
-            </div>
-          </a>
-        </li>
-      `,
-        )
-        .join("")}
-    </ul>
+    <div class="app-videos__page" data-page></div>
+    <div class="app-videos__nav">
+      <button type="button" class="app-videos__nav-btn" data-prev aria-label="Previous video">← prev</button>
+      <span class="app-videos__pager" data-pager></span>
+      <button type="button" class="app-videos__nav-btn" data-next aria-label="Next video">next →</button>
+    </div>
   `;
 
+  const pageMount = root.querySelector<HTMLElement>("[data-page]")!;
+  const pager = root.querySelector<HTMLElement>("[data-pager]")!;
+  const prevBtn = root.querySelector<HTMLButtonElement>("[data-prev]")!;
+  const nextBtn = root.querySelector<HTMLButtonElement>("[data-next]")!;
+
+  function render() {
+    const video = videos[index]!;
+
+    pageMount.innerHTML = `
+      <a
+        class="app-videos__card"
+        href="${video.url}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="app-videos__thumb-wrap">
+          <img
+            class="app-videos__thumb"
+            src="${video.thumbnail}"
+            alt=""
+            draggable="false"
+            width="320"
+            height="180"
+          />
+        </div>
+        <div class="app-videos__meta">
+          <span class="app-videos__title">${video.title}</span>
+          <span class="app-videos__views">${formatViews(video.views)}</span>
+        </div>
+      </a>
+    `;
+
+    pager.textContent = `${index + 1} / ${videos.length}`;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === videos.length - 1;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (index <= 0) return;
+    index -= 1;
+    render();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (index >= videos.length - 1) return;
+    index += 1;
+    render();
+  });
+
+  render();
   return root;
 }
 
 export const videosApp: AppDefinition = {
   id: "videos",
-  title: "Videos",
+  title: "Videos (videos I find interesting)",
   iconSrc: "/videos-icon.png",
   iconLabel: "Videos",
   width: 480,

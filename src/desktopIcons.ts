@@ -23,10 +23,17 @@ export function enableIconDesktop(
 
   const positions = new Map<AppId, { col: number; row: number }>();
 
+  function rowsPerColumn() {
+    const height = options.workarea.clientHeight || 968;
+    // Column-major wrap: fill down, then start the next column beside it.
+    return Math.max(1, Math.floor((height - PAD) / GRID_Y));
+  }
+
   buttons.forEach((button, index) => {
     const id = button.dataset.appId as AppId;
-    const col = 0;
-    const row = index;
+    const perCol = rowsPerColumn();
+    const col = Math.floor(index / perCol);
+    const row = index % perCol;
     positions.set(id, { col, row });
     placeIcon(button, col, row);
     bindIcon(button, id);

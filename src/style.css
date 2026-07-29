@@ -1289,35 +1289,23 @@ body {
 }
 
 .app-videos {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  min-height: 0;
-  overflow: auto;
-  padding: 18px 18px 20px;
   box-sizing: border-box;
+  min-height: 0;
   font-family: "Gochi Hand", cursive;
   color: #111;
   background: #f4f0e6;
   -webkit-font-smoothing: none;
 }
 
-.app-videos__heading {
-  margin: 0 0 14px;
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.app-videos__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.app-videos__item {
-  min-width: 0;
+.app-videos__page {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 18px 18px 14px;
+  box-sizing: border-box;
 }
 
 .app-videos__card {
@@ -1333,7 +1321,6 @@ body {
 }
 
 .app-videos__thumb-wrap {
-  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #fff;
@@ -1346,22 +1333,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.app-videos__play {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  background: rgba(17, 17, 17, 0.28);
-}
-
-.app-videos__play-icon {
-  width: 72px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(1px 1px 0 #111);
 }
 
 .app-videos__meta {
@@ -1385,4 +1356,46 @@ body {
   font-size: 16px;
   line-height: 1.1;
   color: #555;
+}
+
+.app-videos__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px 14px;
+  border-top: 2px solid #111;
+  background: #f4f0e6;
+  flex-shrink: 0;
+}
+
+.app-videos__nav-btn {
+  appearance: none;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font-family: "Gochi Hand", cursive;
+  font-size: 20px;
+  line-height: 1;
+  padding: 6px 12px;
+  cursor: pointer;
+  -webkit-font-smoothing: none;
+}
+
+.app-videos__nav-btn:hover:not(:disabled),
+.app-videos__nav-btn:focus-visible:not(:disabled) {
+  background: #111;
+  color: #fff;
+}
+
+.app-videos__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.app-videos__pager {
+  font-family: "Gochi Hand", cursive;
+  font-size: 20px;
+  color: #111;
+  -webkit-font-smoothing: none;
 }

@@ -46,14 +46,9 @@ export function enableIconDesktop(
 
   function clampCell(col: number, row: number) {
     const bounds = options.workarea;
-    const maxCol = Math.max(
-      0,
-      Math.floor((bounds.clientWidth - PAD - ICON_W) / GRID_X),
-    );
-    const maxRow = Math.max(
-      0,
-      Math.floor((bounds.clientHeight - PAD - ICON_H) / GRID_Y),
-    );
+    const width = bounds.clientWidth || 1920;
+    const maxCol = Math.max(0, Math.floor((width - PAD - ICON_W) / GRID_X));
+    const maxRow = Math.max(0, rowsPerColumn() - 1);
     return {
       col: Math.min(maxCol, Math.max(0, col)),
       row: Math.min(maxRow, Math.max(0, row)),

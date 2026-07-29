@@ -60,8 +60,8 @@ function createVideosContent(): HTMLElement {
 
   function render() {
     const video = videos[index]!;
-
     pageMount.innerHTML = `
+      <h2 class="app-videos__heading">${video.title}</h2>
       <a
         class="app-videos__card"
         href="${video.url}"
@@ -79,7 +79,6 @@ function createVideosContent(): HTMLElement {
           />
         </div>
         <div class="app-videos__meta">
-          <span class="app-videos__title">${video.title}</span>
           <span class="app-videos__views">${formatViews(video.views)}</span>
         </div>
       </a>
@@ -108,7 +107,7 @@ function createVideosContent(): HTMLElement {
 
 export const videosApp: AppDefinition = {
   id: "videos",
-  title: "Videos (videos I find interesting)",
+  title: "Videos (that I find interesting)",
   iconSrc: "/videos-icon.png",
   iconLabel: "Videos",
   width: 480,

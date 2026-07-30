@@ -5,6 +5,7 @@ import { notesApp } from "./notes";
 import { programmingCompsApp } from "./programmingComps";
 import { projectsApp } from "./projects";
 import { schoolApp } from "./school";
+import { videosApp } from "./videos";
 import type { AppDefinition, AppId } from "./types";
 import { appOrder } from "./types";
 
@@ -15,6 +16,7 @@ export const apps: Record<AppId, AppDefinition> = {
   "programming-comps": programmingCompsApp,
   school: schoolApp,
   music: musicApp,
+  videos: videosApp,
   deadlock: deadlockApp,
 };
 

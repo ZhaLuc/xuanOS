@@ -5,6 +5,7 @@ export type AppId =
   | "programming-comps"
   | "school"
   | "music"
+  | "videos"
   | "deadlock";
 
 export type AppDefinition = {
@@ -24,5 +25,6 @@ export const appOrder: AppId[] = [
   "programming-comps",
   "school",
   "music",
+  "videos",
   "deadlock",
 ];

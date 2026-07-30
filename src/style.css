@@ -1296,7 +1296,6 @@ body {
   min-height: 0;
   font-family: "Gochi Hand", cursive;
   color: #111;
-  background: #f4f0e6;
   -webkit-font-smoothing: none;
 }
 
@@ -1304,7 +1303,7 @@ body {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 18px 18px 14px;
+  padding: 20px 22px 14px;
   box-sizing: border-box;
 }
 

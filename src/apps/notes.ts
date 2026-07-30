@@ -1,10 +1,14 @@
 import type { AppDefinition } from "./types";
 
+type NoteImage = {
+  src: string;
+  alt: string;
+};
+
 type NotePage = {
   title: string;
   date?: string;
-  image?: string;
-  imageAlt?: string;
+  images: NoteImage[];
   paragraphs: string[];
 };
 
@@ -12,8 +16,22 @@ const pages: NotePage[] = [
   {
     title: "sushi with family and friends",
     date: "7/23/2026",
-    image: "/notes/sushi.png",
-    imageAlt: "Sushi boat dinner",
+    images: [{ src: "/notes/sushi.png", alt: "Sushi boat dinner" }],
+    paragraphs: [],
+  },
+  {
+    title: "dinner with my family and a beautiful sky",
+    date: "7/27/2026",
+    images: [
+      { src: "/notes/dinner.png", alt: "Family dinner table" },
+      { src: "/notes/sky.png", alt: "Sunset sky over Lam's Market" },
+    ],
+    paragraphs: [],
+  },
+  {
+    title: "Seafood boil w/ family 🤤",
+    date: "7/29/2026",
+    images: [{ src: "/notes/seafood-boil.png", alt: "Seafood boil and fries with family" }],
     paragraphs: [],
   },
 ];
@@ -46,9 +64,21 @@ function createNotesContent(): HTMLElement {
     const dateHtml = page.date
       ? `<p class="app-notes__date">${page.date}</p>`
       : "";
-    const imageHtml = page.image
-      ? `<img class="app-notes__image" src="${page.image}" alt="${page.imageAlt ?? ""}" draggable="false" />`
-      : "";
+    const imageHtml =
+      page.images.length > 0
+        ? `<div class="app-notes__images">${page.images
+            .map(
+              (image) => `
+            <img
+              class="app-notes__image"
+              src="${image.src}"
+              alt="${image.alt}"
+              draggable="false"
+            />
+          `,
+            )
+            .join("")}</div>`
+        : "";
     const bodyHtml =
       page.paragraphs.length > 0
         ? page.paragraphs.map((p) => `<p>${p}</p>`).join("")

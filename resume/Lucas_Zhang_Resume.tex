@@ -1,0 +1,190 @@
+%-------------------------
+% Resume - Lucas Zhang (Jake's Resume style)
+% Overleaf: compile with pdfLaTeX
+%-------------------------
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.55in}
+\addtolength{\evensidemargin}{-0.55in}
+\addtolength{\textwidth}{1.1in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.15in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-2pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+    {\Huge \scshape Lucas Zhang} \\ \vspace{1pt}
+    \small
+    602-580-5905 $|$
+    \href{mailto:lucaszhangbusiness@gmail.com}{lucaszhangbusiness@gmail.com} $|$
+    \href{https://www.linkedin.com/in/luczha/}{linkedin.com/in/luczha} $|$
+    \href{https://github.com/ZhaLuc}{github.com/ZhaLuc} $|$
+    \href{https://lexuan.vercel.app}{lexuan.vercel.app}
+\end{center}
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {BASIS Peoria}{Peoria, AZ}
+      {High School Diploma Candidate}{Expected Graduation: May 2027}
+      \resumeItemListStart
+        \resumeItem{GPA: 3.91 Unweighted / 4.71 Weighted; 16 AP courses including AP Computer Science A, AP Computer Science Principles, AP Calculus BC, AP Physics 1/2, AP Chemistry, AP Research, and AP Seminar}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: C, C++, Python, TypeScript, JavaScript, SQL, HTML/CSS, Assembly} \\
+     \textbf{Frameworks \& Libraries}{: React, Node.js, Express, FastAPI, NumPy, pandas, Git, Docker, Ghidra, IDA Pro, x64dbg} \\
+     \textbf{AI / Robotics}{: PyTorch, TensorFlow, YOLO, OpenCV, ROS 2, Nav2, SLAM, Arduino}
+    }}
+ \end{itemize}
+
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{GenesisOS (CustomOS)} $|$ \emph{C, Assembly, Linux tooling} $|$ \href{https://github.com/ZhaLuc/GenesisOS}{GitHub}}{\emph{Solo}}
+          \resumeItemListStart
+            \resumeItem{Built a from-scratch higher-half x86\_64 operating system spanning PMM/VMM, preemptive scheduling, ELF userland, VFS/FAT32, TCP/IP, USB (xHCI), HD Audio, and a software-rendered desktop/window manager}
+            \resumeItem{Validated subsystem correctness with a consolidated \texttt{MASTER\_SELFTEST} harness, achieving 26/26 PASS on QEMU \texttt{q35}}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{mycc} $|$ \emph{C++, LLVM, x86-64} $|$ \href{https://github.com/ZhaLuc/mycc}{GitHub}}{\emph{Solo}}
+          \resumeItemListStart
+            \resumeItem{Engineered a from-scratch C subset compiler with hand-written lexer/parser/semantics and dual backends (handwritten x86-64 assembly + LLVM IR)}
+            \resumeItem{Verified native executable correctness against GCC using a 117-program differential suite across 12 build stages, with identical results on both backends}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{GridMark} $|$ \emph{ROS 2, Nav2, YOLO, Python, C++} $|$ \href{https://github.com/ZhaLuc/GridMark}{GitHub}}{\emph{Solo}}
+          \resumeItemListStart
+            \resumeItem{Designed an autonomous indoor SLAM robot that maps with LiDAR, explores via Nav2 frontiers, and detects targets with fine-tuned YOLO on Jetson Orin Nano Super}
+            \resumeItem{Integrated Jetson compute with Arduino Mega motor/encoder control over USB serial, including fail-safe command timeout and calibrated odometry/TF geometry}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{AZSEF Water Analysis} $|$ \emph{Python, TypeScript, React, PostgreSQL} $|$ \href{https://github.com/ZhaLuc/AZSEF-Water-Analysis}{GitHub}}{\emph{Solo}}
+          \resumeItemListStart
+            \resumeItem{Developed five independent Gaussian Process regression models to predict dissolved Fe/Cr/Mn/Mo/In across Phoenix from six FAAS-analyzed field samples}
+            \resumeItem{Shipped a React web app with serverless APIs for click-to-predict maps with calibrated posterior uncertainty and LOOCV validation; recognized with the Stockholm Junior Water Prize at AzSEF}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{CPU Path Tracer} $|$ \emph{C, Multithreading, Algorithms} $|$ \href{https://github.com/ZhaLuc/RayTracing}{GitHub}}{\emph{Solo}}
+          \resumeItemListStart
+            \resumeItem{Implemented a dependency-free multithreaded path tracer with Lambertian/metal/dielectric materials, Monte Carlo GI, BVH acceleration, and deterministic multi-core rendering}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {National Underwater Robotics Challenge (NURC) / ASU Underwater Robotics Camp}{Arizona}
+      {Lead Programmer (Team $\sim$17)}{2026}
+      \resumeItemListStart
+        \resumeItem{Led software development for tethered underwater ROV platforms, coordinating controls, mission logic, and integration across a $\sim$17-person engineering team}
+        \resumeItem{Directed programming for pool testing and competition runs; team placed 3rd at the National Underwater Robotics Challenge}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {ASU EPICS - BMECS (Tiger Mountain Foundation)}{Phoenix, AZ}
+      {Student Engineer (Team of 4)}{2026}
+      \resumeItemListStart
+        \resumeItem{Engineered a volunteer-operable bed-level environmental control kit to reduce garden heat stress and water waste without buried irrigation infrastructure}
+        \resumeItem{Presented project work at Arizona State University Ira A. Fulton Schools of Engineering}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+\section{Leadership \& Activities}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Speech \& Debate}{BASIS Peoria}
+      {High School Captain; Debate BQ D2 State Champion}{}
+      \resumeItemListStart
+        \resumeItem{Led a high school team of $\sim$100-120 students as Captain after captaining a middle school team of $\sim$50; won Debate BQ D2 State Championship}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Olympiad \& Competitive Programming}{Independent / Contests}
+      {Codeforces Master; USACO Gold}{}
+      \resumeItemListStart
+        \resumeItem{Train and compete in olympiad-style algorithmic contests; reached Codeforces Master (peak rating 2129) and USACO Gold through sustained problem-solving practice}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {STEM Clubs}{BASIS Peoria}
+      {Member}{}
+      \resumeItemListStart
+        \resumeItem{Active in Robotics Club, Coding Club, Math Club, Circuits Club, Electrical Engineering Club, and Machine Learning Club}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {National Chinese Honor Society}{BASIS Peoria}
+      {President}{}
+      \resumeItemListStart
+        \resumeItem{Directed chapter programming and membership initiatives; supported Chinese culture education volunteering}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\end{document}

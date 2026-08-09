@@ -140,9 +140,9 @@ function createNotesContent(): HTMLElement {
 
 export const notesApp: AppDefinition = {
   id: "notes",
-  title: "Notes",
+  title: "Blog",
   iconSrc: "/notes-icon.png",
-  iconLabel: "Notes",
+  iconLabel: "Blog",
   width: 520,
   height: 520,
   createContent: createNotesContent,

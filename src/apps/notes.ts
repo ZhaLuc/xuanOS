@@ -34,6 +34,30 @@ const pages: NotePage[] = [
     images: [{ src: "/notes/seafood-boil.png", alt: "Seafood boil and fries with family" }],
     paragraphs: [],
   },
+  {
+    title: "fire in the distance, the news said it was arson",
+    date: "7/31/2026",
+    images: [{ src: "/notes/fire-distance.png", alt: "Distant smoke and fire over suburban rooftops" }],
+    paragraphs: [],
+  },
+  {
+    title: "Spiderman BND: i love the punisher",
+    date: "8/2/2026",
+    images: [{ src: "/notes/spiderman-bnd.png", alt: "Spider-Man projected on bedroom wall" }],
+    paragraphs: [],
+  },
+  {
+    title: "first day of school :}",
+    date: "8/3/2026",
+    images: [{ src: "/notes/first-day-school.png", alt: "Doughnut backpack on classroom table" }],
+    paragraphs: [],
+  },
+  {
+    title: "at home cooked seafood boil. amazing.",
+    date: "8/8/2026",
+    images: [{ src: "/notes/seafood-boil-home.png", alt: "Home-cooked seafood boil on the table" }],
+    paragraphs: [],
+  },
 ];
 
 function createNotesContent(): HTMLElement {
